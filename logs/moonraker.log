@@ -3035,3 +3035,54 @@ moonraker.utils.ServerError: Key 'fcm' in namespace 'mobileraker' not found
 2023-03-28 14:06:33,247 [websockets.py:open()] - Websocket Opened: ID: 3882534872, Proxied: True, User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36, Host Name: 10.0.0.99
 2023-03-28 14:06:33,253 [websockets.py:_handle_identify()] - Websocket 3882534872 Client Identified - Name: mainsail, Version: 2.5.0, Type: web
 2023-03-28 14:25:48,649 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 127.0.0.1
+2023-03-28 15:00:02,818 [app.py:log_request()] - 201 POST /server/files/upload (10.0.0.5) [_TRUSTED_USER_] 10.29ms
+2023-03-28 15:00:03,879 [klippy_connection.py:_on_connection_closed()] - Klippy Connection Removed
+2023-03-28 15:00:03,887 [websockets.py:on_close()] - Websocket Closed: ID: 3912545736 Close Code: 1000, Close Reason: None, Pong Time Elapsed: 1.97
+2023-03-28 15:00:03,915 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 127.0.0.1
+2023-03-28 15:00:03,934 [app.py:log_request()] - 404 GET /machine/device_power/devices (127.0.0.1) [No User] 4.82ms
+2023-03-28 15:00:05,142 [klippy_connection.py:_do_connect()] - Klippy Connection Established
+2023-03-28 15:00:05,898 [app.py:log_request()] - 101 GET /websocket (127.0.0.1) [_TRUSTED_USER_] 1.70ms
+2023-03-28 15:00:05,898 [websockets.py:open()] - Websocket Opened: ID: 3880649608, Proxied: False, User Agent: , Host Name: 0.0.0.0
+2023-03-28 15:00:06,999 [app.py:log_request()] - 404 GET /machine/device_power/devices (127.0.0.1) [No User] 1.76ms
+2023-03-28 15:00:07,357 [file_manager.py:get_file_list()] - Updating File List <gcodes>...
+2023-03-28 15:00:07,773 [klippy_connection.py:_request_initial_subscriptions()] - Webhooks Subscribed
+2023-03-28 15:00:07,775 [klippy_connection.py:_request_initial_subscriptions()] - GCode Output Subscribed
+2023-03-28 15:00:08,024 [job_state.py:_handle_started()] - Job state initialized: standby
+2023-03-28 15:00:08,291 [klippy_connection.py:_check_ready()] - Klippy ready
+2023-03-28 15:00:08,538 [common.py:build_error()] - JSON-RPC Request Error: -32601
+Key 'fcm' in namespace 'mobileraker' not found
+Traceback (most recent call last):
+  File "/home/pi/moonraker/moonraker/common.py", line 541, in execute_method
+    result = await callback(params)
+  File "/home/pi/moonraker/moonraker/websockets.py", line 113, in func
+    result = await callback(
+  File "/home/pi/moonraker/moonraker/components/database.py", line 762, in _handle_item_request
+    val = await self.get_item(namespace, key)
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/home/pi/moonraker/moonraker/components/database.py", line 196, in func_wrapper
+    return command_func(*args)
+  File "/home/pi/moonraker/moonraker/components/database.py", line 359, in _get_impl
+    ns = self._get_record(namespace, key_list[0])
+  File "/home/pi/moonraker/moonraker/components/database.py", line 674, in _get_record
+    raise self.server.error(
+moonraker.utils.ServerError: Key 'fcm' in namespace 'mobileraker' not found
+2023-03-28 15:00:08,784 [data_store.py:_init_sensors()] - Configuring available sensors: ['heater_bed', 'temperature_sensor Octopus', 'temperature_sensor Raspi', 'temperature_sensor FLY-SB', 'temperature_sensor sb-ntc', 'extruder']
+2023-03-28 15:00:08,792 [common.py:build_error()] - JSON-RPC Request Error: -32601
+Key 'fcm' in namespace 'mobileraker' not found
+Traceback (most recent call last):
+  File "/home/pi/moonraker/moonraker/common.py", line 541, in execute_method
+    result = await callback(params)
+  File "/home/pi/moonraker/moonraker/websockets.py", line 113, in func
+    result = await callback(
+  File "/home/pi/moonraker/moonraker/components/database.py", line 762, in _handle_item_request
+    val = await self.get_item(namespace, key)
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/home/pi/moonraker/moonraker/components/database.py", line 196, in func_wrapper
+    return command_func(*args)
+  File "/home/pi/moonraker/moonraker/components/database.py", line 359, in _get_impl
+    ns = self._get_record(namespace, key_list[0])
+  File "/home/pi/moonraker/moonraker/components/database.py", line 674, in _get_record
+    raise self.server.error(
+moonraker.utils.ServerError: Key 'fcm' in namespace 'mobileraker' not found

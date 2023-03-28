@@ -8762,3 +8762,44 @@ heater_bed = False
 2023-03-28 13:20:56,508 [printer.py:init_temp_store()] - Temp store: ['heater_bed', 'temperature_sensor Octopus', 'temperature_sensor Raspi', 'temperature_sensor FLY-SB', 'temperature_sensor sb-ntc', 'extruder']
 2023-03-28 13:20:56,517 [KlippyRest.py:send_request()] - Sending request to http://127.0.0.1:7125/server/config
 2023-03-28 13:20:56,518 [screen.py:init_tempstore()] - Temperature store size: 1200
+2023-03-28 15:00:03,886 [printer.py:change_state()] - Changing state from 'ready' to 'disconnected'
+2023-03-28 15:00:03,886 [printer.py:change_state()] - Adding callback for state: disconnected
+2023-03-28 15:00:03,888 [screen.py:state_disconnected()] - ### Going to disconnected
+2023-03-28 15:00:03,898 [screen.py:attach_panel()] - Current panel hierarchy: splash_screen
+2023-03-28 15:00:03,920 [KlippyRest.py:send_request()] - Sending request to http://127.0.0.1:7125/server/info
+2023-03-28 15:00:03,935 [KlippyRest.py:send_request()] - 404 Client Error>>Not Found for url>>http://127.0.0.1:7125/machine/device_power/devices
+2023-03-28 15:00:03,935 [screen.py:init_printer()] - Klipper not connected
+2023-03-28 15:00:06,992 [KlippyRest.py:send_request()] - Sending request to http://127.0.0.1:7125/server/info
+2023-03-28 15:00:07,001 [KlippyRest.py:send_request()] - 404 Client Error>>Not Found for url>>http://127.0.0.1:7125/machine/device_power/devices
+2023-03-28 15:00:07,011 [KlippyRest.py:send_request()] - Sending request to http://127.0.0.1:7125/printer/info
+2023-03-28 15:00:07,030 [KlippyRest.py:send_request()] - Sending request to http://127.0.0.1:7125/printer/objects/query?configfile
+2023-03-28 15:00:07,033 [printer.py:reinit()] - Klipper version: v0.11.0-154-g40263652
+2023-03-28 15:00:07,034 [printer.py:reinit()] - # Extruders: 1
+2023-03-28 15:00:07,034 [printer.py:reinit()] - # Temperature devices: 5
+2023-03-28 15:00:07,034 [printer.py:reinit()] - # Fans: 7
+2023-03-28 15:00:07,034 [printer.py:reinit()] - # Output pins: 0
+2023-03-28 15:00:07,035 [KlippyWebsocket.py:object_subscription()] - Sending printer.objects.subscribe
+2023-03-28 15:00:07,318 [KlippyRest.py:send_request()] - Sending request to http://127.0.0.1:7125/printer/objects/query?bed_mesh&configfile&display_status&extruder&fan&gcode_move&heater_bed&idle_timeout&pause_resume&print_stats&toolhead&virtual_sdcard&webhooks&motion_report&firmware_retraction&exclude_object&extruder&heater_bed&temperature_sensor Octopus&temperature_sensor Raspi&temperature_sensor FLY-SB&temperature_sensor sb-ntc&fan&heater_fan hotend_fan_sb2040&heater_fan hotend_fan&heater_fan Raspi_fan&heater_fan controller_fan&heater_fan controller_fan2&heater_fan nevermore
+2023-03-28 15:00:07,321 [printer.py:change_state()] - Changing state from 'disconnected' to 'startup'
+2023-03-28 15:00:07,321 [printer.py:change_state()] - Adding callback for state: startup
+2023-03-28 15:00:07,340 [KlippyRest.py:send_request()] - Sending request to http://127.0.0.1:7125/server/temperature_store
+2023-03-28 15:00:07,345 [printer.py:init_temp_store()] - Temp store: ['heater_bed', 'temperature_sensor Octopus', 'temperature_sensor Raspi', 'temperature_sensor FLY-SB', 'temperature_sensor sb-ntc', 'extruder']
+2023-03-28 15:00:07,355 [KlippyRest.py:send_request()] - Sending request to http://127.0.0.1:7125/server/config
+2023-03-28 15:00:07,355 [screen.py:init_tempstore()] - Temperature store size: 1200
+2023-03-28 15:00:07,356 [files.py:initialize()] - Gcodes path: /home/pi/printer_data/gcodes
+2023-03-28 15:00:07,356 [KlippyWebsocket.py:get_file_list()] - Sending server.files.list
+2023-03-28 15:00:07,356 [screen.py:init_printer()] - Printer initialized
+2023-03-28 15:00:07,522 [printer.py:change_state()] - Changing state from 'startup' to 'ready'
+2023-03-28 15:00:07,522 [printer.py:change_state()] - Adding callback for state: ready
+2023-03-28 15:00:07,525 [main_menu.py:initialize()] - ### Making MainMenu
+2023-03-28 15:00:07,573 [main_menu.py:add_device()] - Adding device: extruder
+2023-03-28 15:00:07,577 [main_menu.py:add_device()] - Adding device: heater_bed
+2023-03-28 15:00:07,581 [main_menu.py:add_device()] - Adding device: temperature_sensor Octopus
+2023-03-28 15:00:07,585 [main_menu.py:add_device()] - Adding device: temperature_sensor Raspi
+2023-03-28 15:00:07,589 [main_menu.py:add_device()] - Adding device: temperature_sensor FLY-SB
+2023-03-28 15:00:07,594 [main_menu.py:add_device()] - Adding device: temperature_sensor sb-ntc
+2023-03-28 15:00:07,599 [screen.py:attach_panel()] - Current panel hierarchy: main_panel
+2023-03-28 15:00:10,023 [KlippyRest.py:send_request()] - Sending request to http://127.0.0.1:7125/server/temperature_store
+2023-03-28 15:00:10,034 [printer.py:init_temp_store()] - Temp store: ['heater_bed', 'temperature_sensor Octopus', 'temperature_sensor Raspi', 'temperature_sensor FLY-SB', 'temperature_sensor sb-ntc', 'extruder']
+2023-03-28 15:00:10,051 [KlippyRest.py:send_request()] - Sending request to http://127.0.0.1:7125/server/config
+2023-03-28 15:00:10,052 [screen.py:init_tempstore()] - Temperature store size: 1200
