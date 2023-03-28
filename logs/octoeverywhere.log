@@ -504,3 +504,5 @@ Exception: Unknown klippy waiting state.
 2023-03-28 15:00:09,915 - INFO - Moonraker client setting up default notification hooks
 2023-03-28 15:00:10,284 - INFO - Printer state at socket connect is: standby
 2023-03-28 15:00:10,285 - INFO - Moonraker client sync state: Detected no active print and no ping timers are running, so there's nothing to do.
+2023-03-28 15:01:03,901 - INFO - Moonraker client timeout while waiting for request. <built-in function id> server.database.get_item
+2023-03-28 15:01:03,902 - WARNING - Moonraker webcam helper failed to query for webcams. 99990002 - Timeout waiting for RPC response.
