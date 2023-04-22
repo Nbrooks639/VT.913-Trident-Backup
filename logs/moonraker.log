@@ -9,7 +9,7 @@ asyncio_debug: False
 is_backup_config: False
 is_python_package: False
 log_file: /home/pi/printer_data/logs/moonraker.log
-software_version: v0.8.0-32-g31e589a
+software_version: v0.8.0-35-geff0901
 python_version: 3.9.2 (default, Mar 12 2021, 04:06:34)  [GCC 10.2.1 20210110]
 
 #################### Moonraker Configuration ####################
@@ -109,12 +109,18 @@ env = ~/mobileraker-env/bin/python
 requirements = scripts/mobileraker-requirements.txt
 install_script = scripts/install-mobileraker-companion.sh
 
+[update_manager CanBoot]
+type = git_repo
+path = ~/CanBoot
+origin = https://github.com/Arksine/CanBoot.git
+is_system_service = False
+
 #################################################################
 All Configuration Files:
 /home/pi/printer_data/config/moonraker.conf
 /home/pi/printer_data/config/octoeverywhere-system.cfg
 #################################################################
-Unsafe Shutdown Count: 21
+Unsafe Shutdown Count: 25
 
 System Info:
 
@@ -178,8 +184,8 @@ unit_name: moonraker.service
 is_default: True
 manager: systemd
 Properties:
-**Requires=['system.slice', 'sysinit.target', 'network-online.target', '-.mount']
-**After=['basic.target', 'system.slice', 'sysinit.target', 'network-online.target', '-.mount', 'systemd-journald.socket', 'klipper.service']
+**Requires=['system.slice', 'network-online.target', 'sysinit.target', '-.mount']
+**After=['klipper.service', 'system.slice', 'network-online.target', 'basic.target', 'systemd-journald.socket', 'sysinit.target', '-.mount']
 **SupplementaryGroups=['moonraker-admin']
 **EnvironmentFiles=/home/pi/printer_data/systemd/moonraker.env
 **ExecStart=/home/pi/moonraker-env/bin/python $MOONRAKER_ARGS
@@ -193,8 +199,8 @@ unit_name: klipper.service
 is_default: True
 manager: systemd
 Properties:
-**Requires=['sysinit.target', '-.mount', 'system.slice']
-**After=['system.slice', '-.mount', 'sysinit.target', 'basic.target', 'network-online.target', 'systemd-journald.socket']
+**Requires=['system.slice', 'sysinit.target', '-.mount']
+**After=['-.mount', 'basic.target', 'systemd-journald.socket', 'network-online.target', 'sysinit.target', 'system.slice']
 **SupplementaryGroups=[]
 **EnvironmentFiles=/home/pi/printer_data/systemd/klipper.env
 **ExecStart=/home/pi/klippy-env/bin/python $KLIPPER_ARGS
@@ -202,715 +208,35 @@ Properties:
 **FragmentPath=/etc/systemd/system/klipper.service
 **Description=Klipper 3D Printer Firmware SV1
 **User=pi
-Klipper Version: v0.11.0-169-g83308a10
-2023-04-10 00:00:09,725 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:00:09,756 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000043.jpg) successfully finished
-2023-04-10 00:00:34,288 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:00:34,322 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000044.jpg) successfully finished
-2023-04-10 00:00:58,441 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:00:58,481 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000045.jpg) successfully finished
-2023-04-10 00:01:10,772 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:01:10,809 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000046.jpg) successfully finished
-2023-04-10 00:01:23,573 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:01:23,613 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000047.jpg) successfully finished
-2023-04-10 00:01:36,097 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:01:36,133 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000048.jpg) successfully finished
-2023-04-10 00:01:48,728 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:01:48,759 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000049.jpg) successfully finished
-2023-04-10 00:02:01,285 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:02:01,315 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000050.jpg) successfully finished
-2023-04-10 00:02:14,267 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:02:14,299 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000051.jpg) successfully finished
-2023-04-10 00:02:31,410 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:02:31,429 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000052.jpg) successfully finished
-2023-04-10 00:02:51,617 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:02:51,636 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000053.jpg) successfully finished
-2023-04-10 00:03:15,842 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:03:15,861 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000054.jpg) successfully finished
-2023-04-10 00:03:27,309 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 10.0.0.5
-2023-04-10 00:03:31,321 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:03:31,355 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000055.jpg) successfully finished
-2023-04-10 00:03:46,761 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:03:46,799 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000056.jpg) successfully finished
-2023-04-10 00:04:02,724 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:04:02,744 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000057.jpg) successfully finished
-2023-04-10 00:04:17,679 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:04:17,712 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000058.jpg) successfully finished
-2023-04-10 00:04:33,257 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:04:33,286 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000059.jpg) successfully finished
-2023-04-10 00:04:48,202 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:04:48,239 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000060.jpg) successfully finished
-2023-04-10 00:05:03,808 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:05:03,845 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000061.jpg) successfully finished
-2023-04-10 00:05:18,755 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:05:18,775 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000062.jpg) successfully finished
-2023-04-10 00:05:34,377 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:05:34,409 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000063.jpg) successfully finished
-2023-04-10 00:05:49,274 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:05:49,294 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000064.jpg) successfully finished
-2023-04-10 00:06:04,978 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:06:05,018 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000065.jpg) successfully finished
-2023-04-10 00:06:20,639 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:06:20,669 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000066.jpg) successfully finished
-2023-04-10 00:06:36,284 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:06:36,322 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000067.jpg) successfully finished
-2023-04-10 00:06:51,618 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:06:51,656 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000068.jpg) successfully finished
-2023-04-10 00:07:07,276 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:07:07,296 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000069.jpg) successfully finished
-2023-04-10 00:07:22,769 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:07:22,802 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000070.jpg) successfully finished
-2023-04-10 00:07:38,400 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:07:38,433 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000071.jpg) successfully finished
-2023-04-10 00:07:55,135 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:07:55,155 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000072.jpg) successfully finished
-2023-04-10 00:08:12,391 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:08:12,420 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000073.jpg) successfully finished
-2023-04-10 00:08:31,336 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:08:31,361 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000074.jpg) successfully finished
-2023-04-10 00:08:51,839 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:08:51,859 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000075.jpg) successfully finished
-2023-04-10 00:09:11,845 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:09:11,884 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000076.jpg) successfully finished
-2023-04-10 00:09:31,771 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:09:31,795 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000077.jpg) successfully finished
-2023-04-10 00:09:51,085 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:09:51,121 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000078.jpg) successfully finished
-2023-04-10 00:10:10,234 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:10:10,267 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000079.jpg) successfully finished
-2023-04-10 00:10:29,509 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:10:29,528 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000080.jpg) successfully finished
-2023-04-10 00:10:48,031 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:10:48,064 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000081.jpg) successfully finished
-2023-04-10 00:11:06,900 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:11:06,919 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000082.jpg) successfully finished
-2023-04-10 00:11:24,904 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:11:24,940 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000083.jpg) successfully finished
-2023-04-10 00:11:38,574 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:11:38,609 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000084.jpg) successfully finished
-2023-04-10 00:11:52,949 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:11:52,969 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000085.jpg) successfully finished
-2023-04-10 00:12:06,140 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:12:06,166 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000086.jpg) successfully finished
-2023-04-10 00:12:20,781 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:12:20,818 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000087.jpg) successfully finished
-2023-04-10 00:12:34,169 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:12:34,217 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000088.jpg) successfully finished
-2023-04-10 00:12:47,293 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:12:47,312 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000089.jpg) successfully finished
-2023-04-10 00:13:01,318 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:13:01,338 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000090.jpg) successfully finished
-2023-04-10 00:13:14,784 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:13:14,820 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000091.jpg) successfully finished
-2023-04-10 00:13:27,799 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:13:27,833 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000092.jpg) successfully finished
-2023-04-10 00:13:41,191 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:13:41,229 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000093.jpg) successfully finished
-2023-04-10 00:14:03,924 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 00:14:04,024 [timelapse.py:render()] - start FFMPEG: /usr/bin/ffmpeg -r 30 -i '/tmp/timelapse/frame%6d.jpg' -threads 2 -g 5 -crf 23 -vcodec libx264 -pix_fmt yuv420p -an  '/tmp/timelapse/timelapse_motor_plate.gcode_20230410_0014.mp4' -y
-2023-04-10 00:14:09,909 [timelapse.py:render()] - Rendering Video successful: timelapse_motor_plate.gcode_20230410_0014.mp4
-2023-04-10 00:58:54,306 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 10.0.0.5
-2023-04-10 00:58:57,122 [shell_command.py:run_with_response()] - /home/pi/moonraker-env/bin/python: Object Processing is enabled
-File 'CW2_GEARBOX_PLATE_with_filament_SENSOR_and_ECAS_tube_adaptor.gcode' currently supports cancellation, processing aborted
-
-2023-04-10 00:58:57,122 [shell_command.py:_check_proc_success()] - Command (/home/pi/moonraker-env/bin/python /home/pi/moonraker/moonraker/components/file_manager/metadata.py -p /home/pi/printer_data/gcodes -f "CW2_GEARBOX_PLATE_with_filament_SENSOR_and_ECAS_tube_adaptor.gcode" --check-objects) successfully finished
-2023-04-10 00:58:57,146 [common.py:build_error()] - JSON-RPC Request Error: -32601
-Metadata not available for <.thumbs/CW2_GEARBOX_PLATE_with_filament_SENSOR_and_ECAS_tube_adaptor-32x32.png>
+Klipper Version: v0.11.0-180-g011b4e39
+2023-04-21 22:08:47,399 [websockets.py:on_close()] - Websocket Closed: ID: 3893948272 Close Code: 1000, Close Reason: None, Pong Time Elapsed: 0.02
+2023-04-21 22:08:49,409 [app.py:log_request()] - 101 GET /websocket (127.0.0.1) [_TRUSTED_USER_] 2.00ms
+2023-04-21 22:08:49,410 [websockets.py:open()] - Websocket Opened: ID: 3883747528, Proxied: False, User Agent: , Host Name: 0.0.0.0
+2023-04-21 22:08:49,414 [websockets.py:_handle_identify()] - Websocket 3883747528 Client Identified - Name: OctoEverywhere, Version: 2.5.2, Type: other
+2023-04-21 22:09:08,611 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 10.0.0.5
+2023-04-21 22:09:08,612 [app.py:log_request()] - 101 GET /websocket (10.0.0.5) [_TRUSTED_USER_] 3.38ms
+2023-04-21 22:09:08,613 [websockets.py:open()] - Websocket Opened: ID: 3883746328, Proxied: True, User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36, Host Name: 10.0.0.99
+2023-04-21 22:09:08,619 [websockets.py:_handle_identify()] - Websocket 3883746328 Client Identified - Name: mainsail, Version: 2.5.1, Type: web
+2023-04-21 22:10:09,852 [app.py:log_request()] - 201 POST /server/files/upload (10.0.0.5) [_TRUSTED_USER_] 17.36ms
+2023-04-21 22:10:10,908 [klippy_connection.py:_on_connection_closed()] - Klippy Connection Removed
+2023-04-21 22:10:10,912 [websockets.py:on_close()] - Websocket Closed: ID: 3883747528 Close Code: 1000, Close Reason: None, Pong Time Elapsed: 1.50
+2023-04-21 22:10:10,940 [app.py:log_request()] - 404 GET /machine/device_power/devices (127.0.0.1) [No User] 1.91ms
+2023-04-21 22:10:12,168 [klippy_connection.py:_do_connect()] - Klippy Connection Established
+2023-04-21 22:10:12,923 [app.py:log_request()] - 101 GET /websocket (127.0.0.1) [_TRUSTED_USER_] 1.72ms
+2023-04-21 22:10:12,924 [websockets.py:open()] - Websocket Opened: ID: 3893947168, Proxied: False, User Agent: , Host Name: 0.0.0.0
+2023-04-21 22:10:12,928 [websockets.py:_handle_identify()] - Websocket 3893947168 Client Identified - Name: OctoEverywhere, Version: 2.5.2, Type: other
+2023-04-21 22:10:14,377 [app.py:log_request()] - 404 GET /machine/device_power/devices (127.0.0.1) [No User] 3.22ms
+2023-04-21 22:10:14,743 [klippy_connection.py:_request_initial_subscriptions()] - Webhooks Subscribed
+2023-04-21 22:10:14,745 [klippy_connection.py:_request_initial_subscriptions()] - GCode Output Subscribed
+2023-04-21 22:10:14,816 [file_manager.py:get_file_list()] - Updating File List <gcodes>...
+2023-04-21 22:10:15,078 [common.py:build_error()] - JSON-RPC Request Error: 400
+Connection already identified: {'name': 'OctoEverywhere', 'version': '2.5.2', 'type': 'other', 'url': 'https://octoeverywhere.com'}
 Traceback (most recent call last):
   File "/home/pi/moonraker/moonraker/common.py", line 541, in execute_method
     result = await callback(params)
-  File "/home/pi/moonraker/moonraker/websockets.py", line 113, in func
-    result = await callback(
-  File "/home/pi/moonraker/moonraker/components/file_manager/file_manager.py", line 381, in _handle_metadata_request
+  File "/home/pi/moonraker/moonraker/websockets.py", line 131, in _handle_identify
     raise self.server.error(
-moonraker.utils.ServerError: Metadata not available for <.thumbs/CW2_GEARBOX_PLATE_with_filament_SENSOR_and_ECAS_tube_adaptor-32x32.png>
-2023-04-10 00:58:57,146 [common.py:build_error()] - JSON-RPC Request Error: -32601
-Metadata not available for <.thumbs/CW2_GEARBOX_PLATE_with_filament_SENSOR_and_ECAS_tube_adaptor-400x300.png>
-Traceback (most recent call last):
-  File "/home/pi/moonraker/moonraker/common.py", line 541, in execute_method
-    result = await callback(params)
-  File "/home/pi/moonraker/moonraker/websockets.py", line 113, in func
-    result = await callback(
-  File "/home/pi/moonraker/moonraker/components/file_manager/file_manager.py", line 381, in _handle_metadata_request
-    raise self.server.error(
-moonraker.utils.ServerError: Metadata not available for <.thumbs/CW2_GEARBOX_PLATE_with_filament_SENSOR_and_ECAS_tube_adaptor-400x300.png>
-2023-04-10 00:58:57,167 [app.py:log_request()] - 201 POST /api/files/local (10.0.0.5) [_TRUSTED_USER_] 2844.48ms
-2023-04-10 00:58:57,320 [job_state.py:_status_update()] - Job Started: CW2_GEARBOX_PLATE_with_filament_SENSOR_and_ECAS_tube_adaptor.gcode
-2023-04-10 01:00:59,952 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 60.00 seconds
-2023-04-10 01:01:00,145 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 60.00 seconds
-2023-04-10 01:01:00,960 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 60.00 seconds
-2023-04-10 01:01:59,954 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 120.00 seconds
-2023-04-10 01:02:00,147 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 120.00 seconds
-2023-04-10 01:02:00,962 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 120.00 seconds
-2023-04-10 01:02:59,960 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 180.01 seconds
-2023-04-10 01:03:00,148 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 180.01 seconds
-2023-04-10 01:03:00,966 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 180.01 seconds
-2023-04-10 01:03:59,962 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 240.01 seconds
-2023-04-10 01:04:00,150 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 240.01 seconds
-2023-04-10 01:04:00,968 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 240.01 seconds
-2023-04-10 01:04:59,964 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 300.01 seconds
-2023-04-10 01:05:00,152 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 300.01 seconds
-2023-04-10 01:05:00,970 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 300.01 seconds
-2023-04-10 01:05:59,966 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 360.02 seconds
-2023-04-10 01:06:00,154 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 360.01 seconds
-2023-04-10 01:06:00,971 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 360.01 seconds
-2023-04-10 01:06:11,844 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:06:11,875 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000001.jpg) successfully finished
-2023-04-10 01:09:42,569 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:09:42,606 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000002.jpg) successfully finished
-2023-04-10 01:12:57,834 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:12:57,876 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000003.jpg) successfully finished
-2023-04-10 01:16:01,934 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:16:01,974 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000004.jpg) successfully finished
-2023-04-10 01:17:21,025 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:17:21,062 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000005.jpg) successfully finished
-2023-04-10 01:18:40,263 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:18:40,284 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000006.jpg) successfully finished
-2023-04-10 01:19:55,850 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:19:55,870 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000007.jpg) successfully finished
-2023-04-10 01:21:14,257 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:21:14,277 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000008.jpg) successfully finished
-2023-04-10 01:22:33,906 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:22:33,937 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000009.jpg) successfully finished
-2023-04-10 01:23:50,352 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:23:50,384 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000010.jpg) successfully finished
-2023-04-10 01:25:32,093 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:25:32,128 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000011.jpg) successfully finished
-2023-04-10 01:27:27,198 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:27:27,233 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000012.jpg) successfully finished
-2023-04-10 01:29:54,971 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:29:55,013 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000013.jpg) successfully finished
-2023-04-10 01:31:08,098 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:31:08,128 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000014.jpg) successfully finished
-2023-04-10 01:32:16,773 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:32:16,810 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000015.jpg) successfully finished
-2023-04-10 01:33:26,290 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:33:26,310 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000016.jpg) successfully finished
-2023-04-10 01:34:35,561 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:34:35,599 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000017.jpg) successfully finished
-2023-04-10 01:35:45,793 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:35:45,821 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000018.jpg) successfully finished
-2023-04-10 01:36:57,815 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:36:57,848 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000019.jpg) successfully finished
-2023-04-10 01:38:18,210 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:38:18,230 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000020.jpg) successfully finished
-2023-04-10 01:39:46,348 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:39:46,376 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000021.jpg) successfully finished
-2023-04-10 01:41:09,650 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:41:09,683 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000022.jpg) successfully finished
-2023-04-10 01:42:28,377 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:42:28,410 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000023.jpg) successfully finished
-2023-04-10 01:43:27,693 [update_manager.py:_handle_auto_refresh()] - Klippy is printing, auto refresh aborted
-2023-04-10 01:43:40,366 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:43:40,399 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000024.jpg) successfully finished
-2023-04-10 01:44:55,660 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:44:55,678 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000025.jpg) successfully finished
-2023-04-10 01:46:09,727 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:46:09,766 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000026.jpg) successfully finished
-2023-04-10 01:47:36,649 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:47:36,680 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000027.jpg) successfully finished
-2023-04-10 01:48:48,419 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:48:48,440 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000028.jpg) successfully finished
-2023-04-10 01:50:08,231 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:50:08,255 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000029.jpg) successfully finished
-2023-04-10 01:51:18,821 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:51:18,840 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000030.jpg) successfully finished
-2023-04-10 01:52:30,540 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:52:30,574 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000031.jpg) successfully finished
-2023-04-10 01:53:42,450 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:53:42,468 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000032.jpg) successfully finished
-2023-04-10 01:54:34,830 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:54:34,883 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000033.jpg) successfully finished
-2023-04-10 01:55:33,001 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:55:33,020 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000034.jpg) successfully finished
-2023-04-10 01:56:33,257 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:56:33,303 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000035.jpg) successfully finished
-2023-04-10 01:57:42,383 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:57:42,419 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000036.jpg) successfully finished
-2023-04-10 01:58:41,168 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:58:41,202 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000037.jpg) successfully finished
-2023-04-10 01:59:40,333 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 01:59:40,374 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000038.jpg) successfully finished
-2023-04-10 02:00:38,129 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:00:38,161 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000039.jpg) successfully finished
-2023-04-10 02:01:35,968 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:01:35,997 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000040.jpg) successfully finished
-2023-04-10 02:02:33,046 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:02:33,065 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000041.jpg) successfully finished
-2023-04-10 02:03:27,336 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 10.0.0.5
-2023-04-10 02:03:30,434 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:03:30,454 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000042.jpg) successfully finished
-2023-04-10 02:04:27,587 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:04:27,608 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000043.jpg) successfully finished
-2023-04-10 02:05:25,551 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:05:25,570 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000044.jpg) successfully finished
-2023-04-10 02:06:23,155 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:06:23,184 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000045.jpg) successfully finished
-2023-04-10 02:07:20,462 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:07:20,492 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000046.jpg) successfully finished
-2023-04-10 02:08:19,713 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:08:19,732 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000047.jpg) successfully finished
-2023-04-10 02:09:18,403 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:09:18,433 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000048.jpg) successfully finished
-2023-04-10 02:10:18,015 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:10:18,051 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000049.jpg) successfully finished
-2023-04-10 02:11:14,921 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:11:14,952 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000050.jpg) successfully finished
-2023-04-10 02:12:13,320 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:12:13,352 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000051.jpg) successfully finished
-2023-04-10 02:13:04,608 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:13:04,644 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000052.jpg) successfully finished
-2023-04-10 02:13:56,960 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:13:56,997 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000053.jpg) successfully finished
-2023-04-10 02:14:46,775 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:14:46,814 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000054.jpg) successfully finished
-2023-04-10 02:15:35,918 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:15:35,952 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000055.jpg) successfully finished
-2023-04-10 02:16:24,810 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:16:24,844 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000056.jpg) successfully finished
-2023-04-10 02:17:12,818 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:17:12,852 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000057.jpg) successfully finished
-2023-04-10 02:18:27,578 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:18:27,598 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000058.jpg) successfully finished
-2023-04-10 02:19:52,270 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:19:52,301 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000059.jpg) successfully finished
-2023-04-10 02:21:42,620 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:21:42,652 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000060.jpg) successfully finished
-2023-04-10 02:22:23,801 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:22:23,836 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000061.jpg) successfully finished
-2023-04-10 02:23:01,813 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:23:01,842 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000062.jpg) successfully finished
-2023-04-10 02:23:41,551 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:23:41,585 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000063.jpg) successfully finished
-2023-04-10 02:24:20,534 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:24:20,564 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000064.jpg) successfully finished
-2023-04-10 02:24:55,858 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:24:55,880 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000065.jpg) successfully finished
-2023-04-10 02:25:30,136 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:25:30,168 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000066.jpg) successfully finished
-2023-04-10 02:26:04,685 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:26:04,714 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000067.jpg) successfully finished
-2023-04-10 02:26:39,802 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:26:39,822 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000068.jpg) successfully finished
-2023-04-10 02:27:15,342 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:27:15,382 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000069.jpg) successfully finished
-2023-04-10 02:27:51,323 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:27:51,353 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000070.jpg) successfully finished
-2023-04-10 02:28:24,040 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:28:24,072 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000071.jpg) successfully finished
-2023-04-10 02:28:57,952 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:28:57,970 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000072.jpg) successfully finished
-2023-04-10 02:29:32,632 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:29:32,660 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000073.jpg) successfully finished
-2023-04-10 02:30:05,991 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:30:06,024 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000074.jpg) successfully finished
-2023-04-10 02:30:39,518 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:30:39,537 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000075.jpg) successfully finished
-2023-04-10 02:31:12,113 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:31:12,132 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000076.jpg) successfully finished
-2023-04-10 02:31:44,840 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:31:44,870 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000077.jpg) successfully finished
-2023-04-10 02:32:16,578 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:32:16,606 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000078.jpg) successfully finished
-2023-04-10 02:32:49,049 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:32:49,079 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000079.jpg) successfully finished
-2023-04-10 02:33:20,449 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:33:20,468 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000080.jpg) successfully finished
-2023-04-10 02:33:52,361 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:33:52,396 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000081.jpg) successfully finished
-2023-04-10 02:34:23,810 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:34:23,831 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000082.jpg) successfully finished
-2023-04-10 02:34:55,724 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:34:55,764 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000083.jpg) successfully finished
-2023-04-10 02:35:28,409 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:35:28,428 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000084.jpg) successfully finished
-2023-04-10 02:36:01,351 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:36:01,370 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000085.jpg) successfully finished
-2023-04-10 02:36:33,818 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:36:33,847 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000086.jpg) successfully finished
-2023-04-10 02:37:05,546 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:37:05,578 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000087.jpg) successfully finished
-2023-04-10 02:37:37,345 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:37:37,384 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000088.jpg) successfully finished
-2023-04-10 02:38:09,323 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:38:09,358 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000089.jpg) successfully finished
-2023-04-10 02:38:41,324 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:38:41,361 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000090.jpg) successfully finished
-2023-04-10 02:39:14,104 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:39:14,151 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000091.jpg) successfully finished
-2023-04-10 02:39:46,400 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:39:46,434 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000092.jpg) successfully finished
-2023-04-10 02:40:18,260 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:40:18,298 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000093.jpg) successfully finished
-2023-04-10 02:40:50,948 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:40:50,990 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000094.jpg) successfully finished
-2023-04-10 02:41:22,969 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:41:22,987 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000095.jpg) successfully finished
-2023-04-10 02:41:55,842 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:41:55,860 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000096.jpg) successfully finished
-2023-04-10 02:42:27,991 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:42:28,031 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000097.jpg) successfully finished
-2023-04-10 02:42:59,314 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:42:59,334 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000098.jpg) successfully finished
-2023-04-10 02:43:27,694 [update_manager.py:_handle_auto_refresh()] - Klippy is printing, auto refresh aborted
-2023-04-10 02:43:30,111 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:43:30,131 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000099.jpg) successfully finished
-2023-04-10 02:44:01,810 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:44:01,837 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000100.jpg) successfully finished
-2023-04-10 02:44:31,197 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:44:31,216 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000101.jpg) successfully finished
-2023-04-10 02:45:04,900 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:45:04,936 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000102.jpg) successfully finished
-2023-04-10 02:45:38,241 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:45:38,275 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000103.jpg) successfully finished
-2023-04-10 02:46:11,436 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:46:11,471 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000104.jpg) successfully finished
-2023-04-10 02:46:44,745 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:46:44,787 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000105.jpg) successfully finished
-2023-04-10 02:47:17,746 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:47:17,781 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000106.jpg) successfully finished
-2023-04-10 02:47:53,139 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:47:53,170 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000107.jpg) successfully finished
-2023-04-10 02:48:28,979 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:48:29,010 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000108.jpg) successfully finished
-2023-04-10 02:49:07,467 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:49:07,506 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000109.jpg) successfully finished
-2023-04-10 02:49:38,315 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:49:38,353 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000110.jpg) successfully finished
-2023-04-10 02:50:09,150 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:50:09,185 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000111.jpg) successfully finished
-2023-04-10 02:50:40,642 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:50:40,677 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000112.jpg) successfully finished
-2023-04-10 02:51:11,737 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:51:11,755 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000113.jpg) successfully finished
-2023-04-10 02:51:43,566 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:51:43,601 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000114.jpg) successfully finished
-2023-04-10 02:52:19,265 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:52:19,301 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000115.jpg) successfully finished
-2023-04-10 02:52:29,747 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:52:29,788 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000116.jpg) successfully finished
-2023-04-10 02:52:39,266 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:52:39,297 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000117.jpg) successfully finished
-2023-04-10 02:52:49,570 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:52:49,589 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000118.jpg) successfully finished
-2023-04-10 02:52:59,405 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:52:59,426 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000119.jpg) successfully finished
-2023-04-10 02:53:09,682 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:53:09,721 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000120.jpg) successfully finished
-2023-04-10 02:53:19,517 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:53:19,548 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000121.jpg) successfully finished
-2023-04-10 02:53:29,786 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:53:29,828 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000122.jpg) successfully finished
-2023-04-10 02:53:39,552 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:53:39,586 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000123.jpg) successfully finished
-2023-04-10 02:53:47,030 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:53:47,076 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000124.jpg) successfully finished
-2023-04-10 02:54:03,734 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 02:54:03,917 [timelapse.py:render()] - start FFMPEG: /usr/bin/ffmpeg -r 30 -i '/tmp/timelapse/frame%6d.jpg' -threads 2 -g 5 -crf 23 -vcodec libx264 -pix_fmt yuv420p -an  '/tmp/timelapse/timelapse_CW2_GEARBOX_PLATE_with_filament_SENSOR_and_ECAS_tube_adaptor.gcode_20230410_0254.mp4' -y
-2023-04-10 02:54:10,748 [timelapse.py:render()] - Rendering Video successful: timelapse_CW2_GEARBOX_PLATE_with_filament_SENSOR_and_ECAS_tube_adaptor.gcode_20230410_0254.mp4
-2023-04-10 03:24:29,575 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 10.0.0.5
-2023-04-10 03:24:30,013 [shell_command.py:run_with_response()] - /home/pi/moonraker-env/bin/python: Object Processing is enabled
-File 'Duo_Cartridge_LID.gcode' currently supports cancellation, processing aborted
-
-2023-04-10 03:24:30,013 [shell_command.py:_check_proc_success()] - Command (/home/pi/moonraker-env/bin/python /home/pi/moonraker/moonraker/components/file_manager/metadata.py -p /home/pi/printer_data/gcodes -f "Duo_Cartridge_LID.gcode" --check-objects) successfully finished
-2023-04-10 03:24:30,036 [common.py:build_error()] - JSON-RPC Request Error: -32601
-Metadata not available for <.thumbs/Duo_Cartridge_LID-32x32.png>
-Traceback (most recent call last):
-  File "/home/pi/moonraker/moonraker/common.py", line 541, in execute_method
-    result = await callback(params)
-  File "/home/pi/moonraker/moonraker/websockets.py", line 113, in func
-    result = await callback(
-  File "/home/pi/moonraker/moonraker/components/file_manager/file_manager.py", line 381, in _handle_metadata_request
-    raise self.server.error(
-moonraker.utils.ServerError: Metadata not available for <.thumbs/Duo_Cartridge_LID-32x32.png>
-2023-04-10 03:24:30,036 [common.py:build_error()] - JSON-RPC Request Error: -32601
-Metadata not available for <.thumbs/Duo_Cartridge_LID-400x300.png>
-Traceback (most recent call last):
-  File "/home/pi/moonraker/moonraker/common.py", line 541, in execute_method
-    result = await callback(params)
-  File "/home/pi/moonraker/moonraker/websockets.py", line 113, in func
-    result = await callback(
-  File "/home/pi/moonraker/moonraker/components/file_manager/file_manager.py", line 381, in _handle_metadata_request
-    raise self.server.error(
-moonraker.utils.ServerError: Metadata not available for <.thumbs/Duo_Cartridge_LID-400x300.png>
-2023-04-10 03:24:30,059 [app.py:log_request()] - 201 POST /api/files/local (10.0.0.5) [_TRUSTED_USER_] 463.16ms
-2023-04-10 03:24:30,071 [job_state.py:_status_update()] - Job Started: Duo_Cartridge_LID.gcode
-2023-04-10 03:32:18,104 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 03:32:18,133 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000001.jpg) successfully finished
-2023-04-10 03:39:21,693 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 03:39:21,728 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000002.jpg) successfully finished
-2023-04-10 03:43:27,696 [update_manager.py:_handle_auto_refresh()] - Klippy is printing, auto refresh aborted
-2023-04-10 03:46:13,495 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 03:46:13,522 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000003.jpg) successfully finished
-2023-04-10 03:52:37,030 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 03:52:37,067 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000004.jpg) successfully finished
-2023-04-10 03:58:39,731 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 03:58:39,759 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000005.jpg) successfully finished
-2023-04-10 04:04:40,559 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 04:04:40,578 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000006.jpg) successfully finished
-2023-04-10 04:14:30,032 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 04:14:30,051 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000007.jpg) successfully finished
-2023-04-10 04:16:35,943 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 04:16:35,964 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000008.jpg) successfully finished
-2023-04-10 04:18:39,222 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 04:18:39,273 [shell_command.py:_check_proc_success()] - Command (wget http://localhost:8080/?action=snapshot -O /tmp/timelapse/frame000009.jpg) successfully finished
-2023-04-10 04:21:18,075 [timelapse.py:getWebcamConfig()] - something went wrong gettingCam UUID:1684198b-08b5-4f57-8d46-b0ba486f02b5 from Database. Exception: Key '1684198b-08b5-4f57-8d46-b0ba486f02b5' in namespace 'webcams' not found
-2023-04-10 04:21:18,091 [timelapse.py:render()] - start FFMPEG: /usr/bin/ffmpeg -r 30 -i '/tmp/timelapse/frame%6d.jpg' -threads 2 -g 5 -crf 23 -vcodec libx264 -pix_fmt yuv420p -an  '/tmp/timelapse/timelapse_Duo_Cartridge_LID.gcode_20230410_0421.mp4' -y
-2023-04-10 04:21:19,119 [timelapse.py:render()] - Rendering Video successful: timelapse_Duo_Cartridge_LID.gcode_20230410_0421.mp4
-2023-04-10 04:24:12,977 [update_manager.py:refresh()] - Detected 0 package updates:
-
-2023-04-10 04:24:12,993 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/moonraker status -u no) successfully finished
-2023-04-10 04:24:13,004 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/moonraker config --get branch.master.remote) successfully finished
-2023-04-10 04:24:13,015 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/moonraker remote get-url origin) successfully finished
-2023-04-10 04:24:13,503 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/moonraker fetch origin --prune --progress) successfully finished
-2023-04-10 04:24:13,516 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/moonraker merge-base --is-ancestor HEAD origin/master) successfully finished
-2023-04-10 04:24:13,527 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/moonraker branch --list) successfully finished
-2023-04-10 04:24:13,541 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/moonraker rev-parse HEAD) successfully finished
-2023-04-10 04:24:13,559 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/moonraker describe --always --tags --long --dirty) successfully finished
-2023-04-10 04:24:13,571 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/moonraker rev-parse origin/master) successfully finished
-2023-04-10 04:24:13,586 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/moonraker describe origin/master --always --tags --long) successfully finished
-2023-04-10 04:24:13,599 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/moonraker rev-list --tags --max-count=1) successfully finished
-2023-04-10 04:24:13,612 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/moonraker describe --tags d549af915fe50c2e274dc99ac0b772ae0276646e) successfully finished
-2023-04-10 04:24:13,612 [git_deploy.py:log_repo_info()] - Git Repo moonraker Detected:
-Owner: Arksine
-Repository Name: moonraker
-Path: /home/pi/moonraker
-Remote: origin
-Branch: master
-Remote URL: https://github.com/Arksine/moonraker.git
-Current Commit SHA: 31e589abdeac2c45a48bb3aba1cb103f45eed5a0
-Upstream Commit SHA: 31e589abdeac2c45a48bb3aba1cb103f45eed5a0
-Current Version: v0.8.0-32
-Upstream Version: v0.8.0-32
-Is Dirty: False
-Is Detached: False
-Commits Behind: 0
-Tag Data: {}
-Bound Repo: None
-Diverged: False
-2023-04-10 04:24:13,612 [base_deploy.py:log_info()] - Application moonraker: Channel: dev, Need Channel Update: False
-2023-04-10 04:24:13,612 [base_deploy.py:log_info()] - Application moonraker: Validity check for git repo passed
-2023-04-10 04:24:13,634 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/klipper status -u no) successfully finished
-2023-04-10 04:24:13,645 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/klipper config --get branch.master.remote) successfully finished
-2023-04-10 04:24:13,656 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/klipper remote get-url origin) successfully finished
-2023-04-10 04:24:14,435 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/klipper fetch origin --prune --progress) successfully finished
-2023-04-10 04:24:14,448 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/klipper merge-base --is-ancestor HEAD origin/master) successfully finished
-2023-04-10 04:24:14,460 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/klipper branch --list) successfully finished
-2023-04-10 04:24:14,472 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/klipper rev-parse HEAD) successfully finished
-2023-04-10 04:24:14,573 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/klipper describe --always --tags --long --dirty) successfully finished
-2023-04-10 04:24:14,584 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/klipper rev-parse origin/master) successfully finished
-2023-04-10 04:24:14,681 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/klipper describe origin/master --always --tags --long) successfully finished
-2023-04-10 04:24:14,694 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/klipper rev-list --tags --max-count=1) successfully finished
-2023-04-10 04:24:14,707 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/klipper describe --tags e02b725602067a2cd098a62be9a4bb10fc74a9bd) successfully finished
-2023-04-10 04:24:14,708 [git_deploy.py:log_repo_info()] - Git Repo klipper Detected:
-Owner: Klipper3d
-Repository Name: klipper
-Path: /home/pi/klipper
-Remote: origin
-Branch: master
-Remote URL: https://github.com/Klipper3d/klipper.git
-Current Commit SHA: 83308a10510ca4efa022c463b5e6455192f8a0a7
-Upstream Commit SHA: 83308a10510ca4efa022c463b5e6455192f8a0a7
-Current Version: v0.11.0-169
-Upstream Version: v0.11.0-169
-Is Dirty: False
-Is Detached: False
-Commits Behind: 0
-Tag Data: {}
-Bound Repo: None
-Diverged: False
-2023-04-10 04:24:14,709 [base_deploy.py:log_info()] - Application klipper: Channel: dev, Need Channel Update: False
-2023-04-10 04:24:14,709 [base_deploy.py:log_info()] - Application klipper: Validity check for git repo passed
-2023-04-10 04:24:14,983 [update_manager.py:_get_remote_version()] - Github client Info Received:
-Repo: mainsail
-Local Version: v2.5.1
-Remote Version: v2.5.1
-Pre-release: False
-url: https://github.com/mainsail-crew/mainsail/releases/download/v2.5.1/mainsail.zip
-size: 1991346
-Content Type: application/zip
-2023-04-10 04:24:15,016 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/mainsail-config status -u no) successfully finished
-2023-04-10 04:24:15,027 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/mainsail-config config --get branch.master.remote) successfully finished
-2023-04-10 04:24:15,038 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/mainsail-config remote get-url origin) successfully finished
-2023-04-10 04:24:15,542 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/mainsail-config fetch origin --prune --progress) successfully finished
-2023-04-10 04:24:15,555 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/mainsail-config merge-base --is-ancestor HEAD origin/master) successfully finished
-2023-04-10 04:24:15,567 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/mainsail-config branch --list) successfully finished
-2023-04-10 04:24:15,578 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/mainsail-config rev-parse HEAD) successfully finished
-2023-04-10 04:24:15,599 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/mainsail-config describe --always --tags --long --dirty) successfully finished
-2023-04-10 04:24:15,610 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/mainsail-config rev-parse origin/master) successfully finished
-2023-04-10 04:24:15,624 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/mainsail-config describe origin/master --always --tags --long) successfully finished
-2023-04-10 04:24:15,636 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/mainsail-config rev-list --tags --max-count=1) successfully finished
-2023-04-10 04:24:15,649 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/mainsail-config describe --tags 1d096a14c7835ef3b1ec63971f8e1b6295a2f3dd) successfully finished
-2023-04-10 04:24:15,649 [git_deploy.py:log_repo_info()] - Git Repo mainsail-config Detected:
-Owner: mainsail-crew
-Repository Name: mainsail-config
-Path: /home/pi/mainsail-config
-Remote: origin
-Branch: master
-Remote URL: https://github.com/mainsail-crew/mainsail-config.git
-Current Commit SHA: 52d4c47bef7a9fe6c6ca8ef6b09ceff7b8731de1
-Upstream Commit SHA: 52d4c47bef7a9fe6c6ca8ef6b09ceff7b8731de1
-Current Version: v1.0.0-9
-Upstream Version: v1.0.0-9
-Is Dirty: False
-Is Detached: False
-Commits Behind: 0
-Tag Data: {}
-Bound Repo: None
-Diverged: False
-2023-04-10 04:24:15,650 [base_deploy.py:log_info()] - Application mainsail-config: Channel: dev, Need Channel Update: False
-2023-04-10 04:24:15,650 [base_deploy.py:log_info()] - Application mainsail-config: Validity check for git repo passed
-2023-04-10 04:24:15,677 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/moonraker-timelapse status -u no) successfully finished
-2023-04-10 04:24:15,688 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/moonraker-timelapse config --get branch.main.remote) successfully finished
-2023-04-10 04:24:15,700 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/moonraker-timelapse remote get-url origin) successfully finished
-2023-04-10 04:24:16,209 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/moonraker-timelapse fetch origin --prune --progress) successfully finished
-2023-04-10 04:24:16,222 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/moonraker-timelapse merge-base --is-ancestor HEAD origin/main) successfully finished
-2023-04-10 04:24:16,234 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/moonraker-timelapse branch --list) successfully finished
-2023-04-10 04:24:16,246 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/moonraker-timelapse rev-parse HEAD) successfully finished
-2023-04-10 04:24:16,280 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/moonraker-timelapse describe --always --tags --long --dirty) successfully finished
-2023-04-10 04:24:16,305 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/moonraker-timelapse rev-parse origin/main) successfully finished
-2023-04-10 04:24:16,322 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/moonraker-timelapse describe origin/main --always --tags --long) successfully finished
-2023-04-10 04:24:16,334 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/moonraker-timelapse rev-list --tags --max-count=1) successfully finished
-2023-04-10 04:24:16,347 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/moonraker-timelapse describe --tags 23f16bdd09bf6706edaadf63b3de8db2638b94cf) successfully finished
-2023-04-10 04:24:16,348 [git_deploy.py:log_repo_info()] - Git Repo timelapse Detected:
-Owner: mainsail-crew
-Repository Name: moonraker-timelapse
-Path: /home/pi/moonraker-timelapse
-Remote: origin
-Branch: main
-Remote URL: https://github.com/mainsail-crew/moonraker-timelapse.git
-Current Commit SHA: f9198e00c859ecb72e4dcc11451fd33cc98b7297
-Upstream Commit SHA: f9198e00c859ecb72e4dcc11451fd33cc98b7297
-Current Version: v0.0.1-132
-Upstream Version: v0.0.1-132
-Is Dirty: False
-Is Detached: False
-Commits Behind: 0
-Tag Data: {}
-Bound Repo: None
-Diverged: False
-2023-04-10 04:24:16,348 [base_deploy.py:log_info()] - Application timelapse: Channel: dev, Need Channel Update: False
-2023-04-10 04:24:16,348 [base_deploy.py:log_info()] - Application timelapse: Validity check for git repo passed
-2023-04-10 04:24:16,367 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/sonar status -u no) successfully finished
-2023-04-10 04:24:16,379 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/sonar config --get branch.main.remote) successfully finished
-2023-04-10 04:24:16,391 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/sonar remote get-url origin) successfully finished
-2023-04-10 04:24:16,882 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/sonar fetch origin --prune --progress) successfully finished
-2023-04-10 04:24:16,897 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/sonar merge-base --is-ancestor HEAD origin/main) successfully finished
-2023-04-10 04:24:16,910 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/sonar branch --list) successfully finished
-2023-04-10 04:24:16,922 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/sonar rev-parse HEAD) successfully finished
-2023-04-10 04:24:16,936 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/sonar describe --always --tags --long --dirty) successfully finished
-2023-04-10 04:24:16,948 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/sonar rev-parse origin/main) successfully finished
-2023-04-10 04:24:16,961 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/sonar describe origin/main --always --tags --long) successfully finished
-2023-04-10 04:24:16,975 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/sonar rev-list --tags --max-count=1) successfully finished
-2023-04-10 04:24:16,988 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/sonar describe --tags 7962a1225ad88fa2a642ae2b378637491b4b2710) successfully finished
-2023-04-10 04:24:16,989 [git_deploy.py:log_repo_info()] - Git Repo sonar Detected:
-Owner: mainsail-crew
-Repository Name: sonar
-Path: /home/pi/sonar
-Remote: origin
-Branch: main
-Remote URL: https://github.com/mainsail-crew/sonar.git
-Current Commit SHA: 7962a1225ad88fa2a642ae2b378637491b4b2710
-Upstream Commit SHA: 7962a1225ad88fa2a642ae2b378637491b4b2710
-Current Version: v0.1.2-0
-Upstream Version: v0.1.2-0
-Is Dirty: False
-Is Detached: False
-Commits Behind: 0
-Tag Data: {}
-Bound Repo: None
-Diverged: False
-2023-04-10 04:24:16,989 [base_deploy.py:log_info()] - Application sonar: Channel: dev, Need Channel Update: False
-2023-04-10 04:24:16,989 [base_deploy.py:log_info()] - Application sonar: Validity check for git repo passed
-2023-04-10 04:24:17,008 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/crowsnest status -u no) successfully finished
-2023-04-10 04:24:17,019 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/crowsnest config --get branch.master.remote) successfully finished
-2023-04-10 04:24:17,036 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/crowsnest remote get-url origin) successfully finished
-2023-04-10 04:24:17,855 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/crowsnest fetch origin --prune --progress) successfully finished
-2023-04-10 04:24:17,867 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/crowsnest merge-base --is-ancestor HEAD origin/master) successfully finished
-2023-04-10 04:24:17,881 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/crowsnest branch --list) successfully finished
-2023-04-10 04:24:17,892 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/crowsnest rev-parse HEAD) successfully finished
-2023-04-10 04:24:17,911 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/crowsnest describe --always --tags --long --dirty) successfully finished
-2023-04-10 04:24:17,923 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/crowsnest rev-parse origin/master) successfully finished
-2023-04-10 04:24:17,937 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/crowsnest describe origin/master --always --tags --long) successfully finished
-2023-04-10 04:24:17,952 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/crowsnest rev-list --tags --max-count=1) successfully finished
-2023-04-10 04:24:17,965 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/crowsnest describe --tags 9a663584433bec74059ce7b205ecdcb32efa27f7) successfully finished
-2023-04-10 04:24:17,967 [git_deploy.py:log_repo_info()] - Git Repo crowsnest Detected:
-Owner: mainsail-crew
-Repository Name: crowsnest
-Path: /home/pi/crowsnest
-Remote: origin
-Branch: master
-Remote URL: https://github.com/mainsail-crew/crowsnest.git
-Current Commit SHA: 20ed6a8b585a92e8a0e7d8333e81b6e8ca7044e1
-Upstream Commit SHA: 20ed6a8b585a92e8a0e7d8333e81b6e8ca7044e1
-Current Version: v3.0.7-3
-Upstream Version: v3.0.7-3
-Is Dirty: False
-Is Detached: False
-Commits Behind: 0
-Tag Data: {}
-Bound Repo: None
-Diverged: False
-2023-04-10 04:24:17,967 [base_deploy.py:log_info()] - Application crowsnest: Channel: dev, Need Channel Update: False
-2023-04-10 04:24:17,967 [base_deploy.py:log_info()] - Application crowsnest: Validity check for git repo passed
-2023-04-10 04:24:17,992 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/octoeverywhere status -u no) successfully finished
-2023-04-10 04:24:18,004 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/octoeverywhere config --get branch.master.remote) successfully finished
-2023-04-10 04:24:18,017 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/octoeverywhere remote get-url origin) successfully finished
-2023-04-10 04:24:23,567 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/octoeverywhere fetch origin --prune --progress) successfully finished
-2023-04-10 04:24:23,580 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/octoeverywhere merge-base --is-ancestor HEAD origin/master) successfully finished
-2023-04-10 04:24:23,592 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/octoeverywhere branch --list) successfully finished
-2023-04-10 04:24:23,606 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/octoeverywhere rev-parse HEAD) successfully finished
-2023-04-10 04:24:23,628 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/octoeverywhere describe --always --tags --long --dirty) successfully finished
-2023-04-10 04:24:23,641 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/octoeverywhere rev-list --tags --max-count=1) successfully finished
-2023-04-10 04:24:23,654 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/octoeverywhere describe --tags 5e9689d9bbcf0cd613d0807209e55a9f5556c290) successfully finished
-2023-04-10 04:24:23,666 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/octoeverywhere tag -l --format='%(contents)' 2.4.0) successfully finished
-2023-04-10 04:24:23,667 [git_deploy.py:log_repo_info()] - Git Repo octoeverywhere Detected:
-Owner: QuinnDamerell
-Repository Name: OctoPrint-OctoEverywhere
-Path: /home/pi/octoeverywhere
-Remote: origin
-Branch: master
-Remote URL: https://github.com/QuinnDamerell/OctoPrint-OctoEverywhere.git
-Current Commit SHA: c4633366be148f8c922509b6fddf503d0167108a
-Upstream Commit SHA: c4633366be148f8c922509b6fddf503d0167108a
-Current Version: 2.4.0
-Upstream Version: 2.4.0
-Is Dirty: False
-Is Detached: False
-Commits Behind: 0
-Tag Data: {}
-Bound Repo: None
-Diverged: False
-2023-04-10 04:24:23,667 [base_deploy.py:log_info()] - Application octoeverywhere: Channel: beta, Need Channel Update: False
-2023-04-10 04:24:23,667 [base_deploy.py:log_info()] - Application octoeverywhere: Validity check for git repo passed
-2023-04-10 04:24:23,683 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/mobileraker_companion status -u no) successfully finished
-2023-04-10 04:24:23,694 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/mobileraker_companion config --get branch.main.remote) successfully finished
-2023-04-10 04:24:23,706 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/mobileraker_companion remote get-url origin) successfully finished
-2023-04-10 04:24:24,194 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/mobileraker_companion fetch origin --prune --progress) successfully finished
-2023-04-10 04:24:24,206 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/mobileraker_companion merge-base --is-ancestor HEAD origin/main) successfully finished
-2023-04-10 04:24:24,217 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/mobileraker_companion branch --list) successfully finished
-2023-04-10 04:24:24,230 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/mobileraker_companion rev-parse HEAD) successfully finished
-2023-04-10 04:24:24,245 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/mobileraker_companion describe --always --tags --long --dirty) successfully finished
-2023-04-10 04:24:24,257 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/mobileraker_companion rev-parse origin/main) successfully finished
-2023-04-10 04:24:24,272 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/mobileraker_companion describe origin/main --always --tags --long) successfully finished
-2023-04-10 04:24:24,285 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/mobileraker_companion rev-list --tags --max-count=1) successfully finished
-2023-04-10 04:24:24,303 [shell_command.py:_check_proc_success()] - Command (git -C /home/pi/mobileraker_companion describe --tags 1e13562e17cd1f0d7fdead9ade41d2f1a57a7bd3) successfully finished
-2023-04-10 04:24:24,303 [git_deploy.py:log_repo_info()] - Git Repo mobileraker Detected:
-Owner: Clon1998
-Repository Name: mobileraker_companion
-Path: /home/pi/mobileraker_companion
-Remote: origin
-Branch: main
-Remote URL: https://github.com/Clon1998/mobileraker_companion.git
-Current Commit SHA: f17e1265271f459ac95d91b5d5d9c9dcfaf3d7cd
-Upstream Commit SHA: f17e1265271f459ac95d91b5d5d9c9dcfaf3d7cd
-Current Version: v0.3.0-1
-Upstream Version: v0.3.0-1
-Is Dirty: False
-Is Detached: False
-Commits Behind: 0
-Tag Data: {}
-Bound Repo: None
-Diverged: False
-2023-04-10 04:24:24,303 [base_deploy.py:log_info()] - Application mobileraker: Channel: dev, Need Channel Update: False
-2023-04-10 04:24:24,303 [base_deploy.py:log_info()] - Application mobileraker: Validity check for git repo passed
+moonraker.utils.ServerError: Connection already identified: {'name': 'OctoEverywhere', 'version': '2.5.2', 'type': 'other', 'url': 'https://octoeverywhere.com'}
+2023-04-21 22:10:15,081 [job_state.py:_handle_started()] - Job state initialized: standby
+2023-04-21 22:10:15,264 [klippy_connection.py:_check_ready()] - Klippy ready
+2023-04-21 22:10:15,743 [data_store.py:_init_sensors()] - Configuring available sensors: ['heater_bed', 'temperature_sensor Octopus', 'temperature_sensor Raspi', 'temperature_sensor FLY-SB', 'temperature_sensor sb-ntc', 'extruder']

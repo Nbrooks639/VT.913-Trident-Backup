@@ -93,3 +93,9 @@ env = ~/mobileraker-env/bin/python
 requirements = scripts/mobileraker-requirements.txt
 install_script = scripts/install-mobileraker-companion.sh
 
+[update_manager CanBoot]
+type = git_repo
+path = ~/CanBoot
+origin = https://github.com/Arksine/CanBoot.git
+is_system_service = False
+
