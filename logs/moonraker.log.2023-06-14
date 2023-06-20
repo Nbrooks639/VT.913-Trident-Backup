@@ -1,0 +1,1125 @@
+-------------------- Log Start | Wed Jun 14 04:00:42 2023 --------------------
+data_path: /home/pi/printer_data
+is_default_data_path: False
+config_file: /home/pi/printer_data/config/moonraker.conf
+startup_warnings: []
+verbose: False
+debug: False
+asyncio_debug: False
+is_backup_config: False
+is_python_package: False
+software_version: v0.8.0-48-gaa0f89c
+git_branch: master
+git_remote: origin
+git_repo_url: https://github.com/Arksine/moonraker.git
+modified_files: []
+unofficial_components: []
+log_file: /home/pi/printer_data/logs/moonraker.log
+python_version: 3.9.2 (default, Mar 12 2021, 04:06:34)  [GCC 10.2.1 20210110]
+
+#################### Moonraker Configuration ####################
+
+[server]
+host = 0.0.0.0
+port = 7125
+max_upload_size = 1024
+klippy_uds_address = ~/printer_data/comms/klippy.sock
+
+[file_manager]
+enable_object_processing = True
+
+[authorization]
+cors_domains = 
+	https://my.mainsail.xyz
+	http://my.mainsail.xyz
+	http://*.local
+	http://*.lan
+trusted_clients = 
+	10.0.0.0/8
+	127.0.0.0/8
+	169.254.0.0/16
+	172.16.0.0/12
+	192.168.0.0/16
+	FE80::/10
+	::1/128
+
+[octoprint_compat]
+
+[history]
+
+[announcements]
+subscriptions = 
+	octoeverywhere
+
+[update_manager]
+refresh_interval = 168
+enable_auto_refresh = True
+
+[update_manager led_effect]
+type = git_repo
+path = ~/klipper-led_effect
+origin = https://github.com/julianschill/klipper-led_effect.git
+is_system_service = False
+
+[update_manager mainsail]
+type = web
+channel = stable
+repo = mainsail-crew/mainsail
+path = ~/mainsail
+
+[update_manager mainsail-config]
+type = git_repo
+primary_branch = master
+path = ~/mainsail-config
+origin = https://github.com/mainsail-crew/mainsail-config.git
+managed_services = klipper
+
+[update_manager timelapse]
+type = git_repo
+primary_branch = main
+path = ~/moonraker-timelapse
+origin = https://github.com/mainsail-crew/moonraker-timelapse.git
+managed_services = klipper moonraker
+
+[timelapse]
+output_path = ~/timelapse/
+ffmpeg_binary_path = /usr/bin/ffmpeg
+
+[update_manager sonar]
+type = git_repo
+path = ~/sonar
+origin = https://github.com/mainsail-crew/sonar.git
+primary_branch = main
+managed_services = sonar
+install_script = tools/install.sh
+
+[update_manager crowsnest]
+type = git_repo
+path = ~/crowsnest
+origin = https://github.com/mainsail-crew/crowsnest.git
+install_script = tools/install.sh
+
+[update_manager octoeverywhere]
+type = git_repo
+channel = beta
+path = /home/pi/octoeverywhere
+origin = https://github.com/QuinnDamerell/OctoPrint-OctoEverywhere.git
+env = /home/pi/octoeverywhere-env/bin/python
+requirements = requirements.txt
+install_script = install.sh
+managed_services = 
+	octoeverywhere
+
+[update_manager mobileraker]
+type = git_repo
+path = ~/mobileraker_companion
+origin = https://github.com/Clon1998/mobileraker_companion.git
+primary_branch = main
+managed_services = mobileraker
+env = ~/mobileraker-env/bin/python
+requirements = scripts/mobileraker-requirements.txt
+install_script = scripts/install-mobileraker-companion.sh
+
+[update_manager CanBoot]
+type = git_repo
+path = ~/CanBoot
+origin = https://github.com/Arksine/CanBoot.git
+is_system_service = False
+
+[update_manager fluidd-config]
+type = git_repo
+primary_branch = master
+path = ~/fluidd-config
+origin = https://github.com/fluidd-core/fluidd-config.git
+managed_services = klipper
+
+[update_manager fluidd]
+type = web
+channel = stable
+repo = fluidd-core/fluidd
+path = ~/fluidd
+
+#################################################################
+All Configuration Files:
+/home/pi/printer_data/config/moonraker.conf
+/home/pi/printer_data/config/octoeverywhere-system.cfg
+#################################################################
+Unsafe Shutdown Count: 38
+
+System Info:
+
+***python***
+  version: sys.version_info(major=3, minor=9, micro=2, releaselevel='final', serial=0)
+  version_string: 3.9.2 (default, Mar 12 2021, 04:06:34)  [GCC 10.2.1 20210110]
+
+***cpu_info***
+  cpu_count: 4
+  bits: 32bit
+  processor: aarch64
+  cpu_desc: 
+  serial_number: 100000002b686c93
+  hardware_desc: BCM2835
+  model: Raspberry Pi 4 Model B Rev 1.4
+  total_memory: 3705532
+  memory_units: kB
+
+***sd_info***
+  manufacturer_id: 03
+  manufacturer: Sandisk
+  oem_id: 5344
+  product_name: SD32G
+  product_revision: 8.5
+  serial_number: fcf67def
+  manufacturer_date: 3/2022
+  capacity: 29.7 GiB
+  total_bytes: 31927042048
+
+***distribution***
+  name: Raspbian GNU/Linux 11 (bullseye)
+  id: raspbian
+  version: 11
+  version_parts: {'major': '11', 'minor': '', 'build_number': ''}
+  like: debian
+  codename: bullseye
+  release_info: {'name': 'MainsailOS', 'version_id': '1.0.1', 'codename': 'bullseye', 'id': 'mainsailos'}
+
+***virtualization***
+  virt_type: none
+  virt_identifier: none
+
+***network***
+
+***canbus***
+
+***Allowed Services***
+  klipper_mcu
+  webcamd
+  MoonCord
+  KlipperScreen
+  moonraker-telegram-bot
+  moonraker-obico
+  sonar
+  crowsnest
+  octoeverywhere
+  mobileraker
+
+Systemd unit moonraker.service:
+unit_name: moonraker.service
+is_default: True
+manager: systemd
+Properties:
+**Requires=['system.slice', 'sysinit.target', 'network-online.target', '-.mount']
+**After=['systemd-journald.socket', 'system.slice', 'basic.target', 'sysinit.target', 'network-online.target', '-.mount', 'klipper.service']
+**SupplementaryGroups=['moonraker-admin']
+**EnvironmentFiles=/home/pi/printer_data/systemd/moonraker.env
+**ExecStart=/home/pi/moonraker-env/bin/python $MOONRAKER_ARGS
+**WorkingDirectory=/home/pi/moonraker
+**FragmentPath=/etc/systemd/system/moonraker.service
+**Description=API Server for Klipper SV1
+**User=pi
+
+Systemd unit klipper.service:
+unit_name: klipper.service
+is_default: True
+manager: systemd
+Properties:
+**Requires=['sysinit.target', 'system.slice', '-.mount']
+**After=['systemd-journald.socket', 'sysinit.target', 'basic.target', 'network-online.target', 'system.slice', '-.mount']
+**SupplementaryGroups=[]
+**EnvironmentFiles=/home/pi/printer_data/systemd/klipper.env
+**ExecStart=/home/pi/klippy-env/bin/python $KLIPPER_ARGS
+**WorkingDirectory=/home/pi/klipper
+**FragmentPath=/etc/systemd/system/klipper.service
+**Description=Klipper 3D Printer Firmware SV1
+**User=pi
+Klipper Version: v0.11.0-221-g6ce2bd61-dirty
+2023-06-14 00:00:42,248 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000062.jpg) successfully finished
+2023-06-14 00:01:17,077 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000063.jpg) successfully finished
+2023-06-14 00:01:33,438 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000064.jpg) successfully finished
+2023-06-14 00:01:50,410 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000065.jpg) successfully finished
+2023-06-14 00:02:06,404 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000066.jpg) successfully finished
+2023-06-14 00:02:22,437 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000067.jpg) successfully finished
+2023-06-14 00:02:37,818 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000068.jpg) successfully finished
+2023-06-14 00:02:52,826 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000069.jpg) successfully finished
+2023-06-14 00:03:08,583 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000070.jpg) successfully finished
+2023-06-14 00:03:24,035 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000071.jpg) successfully finished
+2023-06-14 00:03:39,639 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000072.jpg) successfully finished
+2023-06-14 00:03:54,920 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000073.jpg) successfully finished
+2023-06-14 00:04:09,449 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000074.jpg) successfully finished
+2023-06-14 00:04:23,948 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000075.jpg) successfully finished
+2023-06-14 00:04:38,747 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000076.jpg) successfully finished
+2023-06-14 00:04:54,008 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000077.jpg) successfully finished
+2023-06-14 00:05:09,403 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000078.jpg) successfully finished
+2023-06-14 00:05:26,370 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000079.jpg) successfully finished
+2023-06-14 00:05:58,494 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000080.jpg) successfully finished
+2023-06-14 00:06:27,346 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000081.jpg) successfully finished
+2023-06-14 00:06:56,081 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000082.jpg) successfully finished
+2023-06-14 00:07:12,708 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000083.jpg) successfully finished
+2023-06-14 00:07:27,648 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000084.jpg) successfully finished
+2023-06-14 00:07:55,842 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000085.jpg) successfully finished
+2023-06-14 00:07:56,689 [update_manager.py:_handle_auto_refresh()] - Klippy is printing, auto refresh aborted
+2023-06-14 00:08:25,379 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000086.jpg) successfully finished
+2023-06-14 00:09:01,342 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000087.jpg) successfully finished
+2023-06-14 00:09:12,838 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000088.jpg) successfully finished
+2023-06-14 00:09:24,227 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000089.jpg) successfully finished
+2023-06-14 00:09:34,694 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000090.jpg) successfully finished
+2023-06-14 00:09:45,700 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000091.jpg) successfully finished
+2023-06-14 00:09:55,819 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000092.jpg) successfully finished
+2023-06-14 00:10:05,243 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000093.jpg) successfully finished
+2023-06-14 00:10:14,802 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000094.jpg) successfully finished
+2023-06-14 00:10:24,350 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000095.jpg) successfully finished
+2023-06-14 00:10:33,857 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000096.jpg) successfully finished
+2023-06-14 00:10:43,363 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000097.jpg) successfully finished
+2023-06-14 00:10:52,851 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000098.jpg) successfully finished
+2023-06-14 00:11:00,877 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000099.jpg) successfully finished
+2023-06-14 00:11:07,776 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000100.jpg) successfully finished
+2023-06-14 00:11:13,233 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000101.jpg) successfully finished
+2023-06-14 00:11:18,741 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000102.jpg) successfully finished
+2023-06-14 00:11:24,166 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000103.jpg) successfully finished
+2023-06-14 00:11:29,568 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000104.jpg) successfully finished
+2023-06-14 00:11:34,951 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000105.jpg) successfully finished
+2023-06-14 00:11:40,321 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000106.jpg) successfully finished
+2023-06-14 00:11:45,624 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000107.jpg) successfully finished
+2023-06-14 00:11:50,406 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000108.jpg) successfully finished
+2023-06-14 00:11:56,187 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000109.jpg) successfully finished
+2023-06-14 00:12:02,009 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000110.jpg) successfully finished
+2023-06-14 00:12:08,377 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000111.jpg) successfully finished
+2023-06-14 00:12:16,087 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000112.jpg) successfully finished
+2023-06-14 00:12:23,684 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000113.jpg) successfully finished
+2023-06-14 00:12:31,188 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000114.jpg) successfully finished
+2023-06-14 00:12:38,634 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000115.jpg) successfully finished
+2023-06-14 00:12:44,075 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000116.jpg) successfully finished
+2023-06-14 00:12:49,538 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000117.jpg) successfully finished
+2023-06-14 00:12:54,935 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000118.jpg) successfully finished
+2023-06-14 00:13:00,242 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000119.jpg) successfully finished
+2023-06-14 00:13:03,683 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000120.jpg) successfully finished
+2023-06-14 00:13:07,258 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000121.jpg) successfully finished
+2023-06-14 00:13:17,468 [timelapse.py:render()] - start FFMPEG: /usr/bin/ffmpeg -r 30 -i '/tmp/timelapse/frame%6d.jpg' -threads 2 -g 5 -crf 23 -vcodec libx264 -pix_fmt yuv420p -an  '/tmp/timelapse/timelapse_V2.5515.gcode_20230614_0013.mp4' -y
+2023-06-14 00:13:25,373 [timelapse.py:render()] - Rendering Video successful: timelapse_V2.5515.gcode_20230614_0013.mp4
+2023-06-14 00:27:56,335 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 10.0.0.5
+2023-06-14 01:36:09,947 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 10.0.0.5
+2023-06-14 01:36:13,572 [app.py:log_request()] - 201 POST /server/files/upload (10.0.0.5) [_TRUSTED_USER_] 31.14ms
+2023-06-14 01:48:00,951 [app.py:log_request()] - 201 POST /server/files/upload (10.0.0.5) [_TRUSTED_USER_] 16.11ms
+2023-06-14 02:08:49,088 [shell_command.py:run_with_response()] - /home/pi/moonraker-env/bin/python: Object Processing is enabled
+File 'Kenny 2 Mod_ Stock SB_ Main Body.gcode' currently supports cancellation, processing aborted
+
+2023-06-14 02:08:49,088 [shell_command.py:_check_proc_success()] - Command (/home/pi/moonraker-env/bin/python /home/pi/moonraker/moonraker/components/file_manager/metadata.py -p /home/pi/printer_data/gcodes -f "Kenny 2 Mod_ Stock SB_ Main Body.gcode" --check-objects) successfully finished
+2023-06-14 02:08:49,110 [common.py:build_error()] - JSON-RPC Request Error: -32601
+Metadata not available for <.thumbs/Kenny 2 Mod_ Stock SB_ Main Body-32x32.png>
+Traceback (most recent call last):
+  File "/home/pi/moonraker/moonraker/common.py", line 541, in execute_method
+    result = await callback(params)
+  File "/home/pi/moonraker/moonraker/websockets.py", line 113, in func
+    result = await callback(
+  File "/home/pi/moonraker/moonraker/components/file_manager/file_manager.py", line 394, in _handle_metadata_request
+    raise self.server.error(
+moonraker.utils.ServerError: Metadata not available for <.thumbs/Kenny 2 Mod_ Stock SB_ Main Body-32x32.png>
+2023-06-14 02:08:49,111 [common.py:build_error()] - JSON-RPC Request Error: -32601
+Metadata not available for <.thumbs/Kenny 2 Mod_ Stock SB_ Main Body-400x300.png>
+Traceback (most recent call last):
+  File "/home/pi/moonraker/moonraker/common.py", line 541, in execute_method
+    result = await callback(params)
+  File "/home/pi/moonraker/moonraker/websockets.py", line 113, in func
+    result = await callback(
+  File "/home/pi/moonraker/moonraker/components/file_manager/file_manager.py", line 394, in _handle_metadata_request
+    raise self.server.error(
+moonraker.utils.ServerError: Metadata not available for <.thumbs/Kenny 2 Mod_ Stock SB_ Main Body-400x300.png>
+2023-06-14 02:08:49,134 [app.py:log_request()] - 201 POST /api/files/local (10.0.0.5) [_TRUSTED_USER_] 1332.26ms
+2023-06-14 02:08:49,239 [job_state.py:_status_update()] - Job Started: Kenny 2 Mod_ Stock SB_ Main Body.gcode
+2023-06-14 02:10:24,126 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 60.00 seconds
+2023-06-14 02:11:24,129 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 120.00 seconds
+2023-06-14 02:11:50,361 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000001.jpg) successfully finished
+2023-06-14 02:14:13,715 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000002.jpg) successfully finished
+2023-06-14 02:15:42,324 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000003.jpg) successfully finished
+2023-06-14 02:17:03,525 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000004.jpg) successfully finished
+2023-06-14 02:20:01,309 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000005.jpg) successfully finished
+2023-06-14 02:21:10,398 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000006.jpg) successfully finished
+2023-06-14 02:22:35,898 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000007.jpg) successfully finished
+2023-06-14 02:23:31,405 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000008.jpg) successfully finished
+2023-06-14 02:24:28,104 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000009.jpg) successfully finished
+2023-06-14 02:25:25,554 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000010.jpg) successfully finished
+2023-06-14 02:26:25,351 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000011.jpg) successfully finished
+2023-06-14 02:27:25,088 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000012.jpg) successfully finished
+2023-06-14 02:28:26,819 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000013.jpg) successfully finished
+2023-06-14 02:29:30,622 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000014.jpg) successfully finished
+2023-06-14 02:30:24,159 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000015.jpg) successfully finished
+2023-06-14 02:31:18,287 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000016.jpg) successfully finished
+2023-06-14 02:32:15,403 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000017.jpg) successfully finished
+2023-06-14 02:33:06,373 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000018.jpg) successfully finished
+2023-06-14 02:34:00,459 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000019.jpg) successfully finished
+2023-06-14 02:34:55,249 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000020.jpg) successfully finished
+2023-06-14 02:35:52,830 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000021.jpg) successfully finished
+2023-06-14 02:36:50,351 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000022.jpg) successfully finished
+2023-06-14 02:37:34,221 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000023.jpg) successfully finished
+2023-06-14 02:38:18,591 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000024.jpg) successfully finished
+2023-06-14 02:39:02,885 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000025.jpg) successfully finished
+2023-06-14 02:39:48,007 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000026.jpg) successfully finished
+2023-06-14 02:40:32,830 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000027.jpg) successfully finished
+2023-06-14 02:41:17,782 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000028.jpg) successfully finished
+2023-06-14 02:42:04,368 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000029.jpg) successfully finished
+2023-06-14 02:42:50,698 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000030.jpg) successfully finished
+2023-06-14 02:43:38,356 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000031.jpg) successfully finished
+2023-06-14 02:44:26,790 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000032.jpg) successfully finished
+2023-06-14 02:45:16,307 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000033.jpg) successfully finished
+2023-06-14 02:46:02,679 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000034.jpg) successfully finished
+2023-06-14 02:46:50,576 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000035.jpg) successfully finished
+2023-06-14 02:47:39,199 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000036.jpg) successfully finished
+2023-06-14 02:48:29,663 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000037.jpg) successfully finished
+2023-06-14 02:49:19,297 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000038.jpg) successfully finished
+2023-06-14 02:49:36,892 [app.py:log_request()] - 201 POST /server/files/upload (10.0.0.5) [_TRUSTED_USER_] 41.03ms
+2023-06-14 02:50:10,894 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000039.jpg) successfully finished
+2023-06-14 02:50:58,186 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000040.jpg) successfully finished
+2023-06-14 02:51:46,587 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000041.jpg) successfully finished
+2023-06-14 02:52:32,956 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000042.jpg) successfully finished
+2023-06-14 02:53:24,443 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000043.jpg) successfully finished
+2023-06-14 02:54:14,612 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000044.jpg) successfully finished
+2023-06-14 02:55:18,259 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000045.jpg) successfully finished
+2023-06-14 02:56:18,109 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000046.jpg) successfully finished
+2023-06-14 02:57:19,511 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000047.jpg) successfully finished
+2023-06-14 02:58:24,547 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000048.jpg) successfully finished
+2023-06-14 02:59:41,227 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000049.jpg) successfully finished
+2023-06-14 03:00:54,235 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000050.jpg) successfully finished
+2023-06-14 03:02:20,084 [app.py:log_request()] - 201 POST /server/files/upload (10.0.0.5) [_TRUSTED_USER_] 10.11ms
+2023-06-14 03:06:25,473 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000051.jpg) successfully finished
+2023-06-14 03:07:40,555 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000052.jpg) successfully finished
+2023-06-14 03:07:56,693 [update_manager.py:_handle_auto_refresh()] - Klippy is printing, auto refresh aborted
+2023-06-14 03:08:41,020 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000053.jpg) successfully finished
+2023-06-14 03:09:53,042 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000054.jpg) successfully finished
+2023-06-14 03:11:04,478 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000055.jpg) successfully finished
+2023-06-14 03:12:26,192 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000056.jpg) successfully finished
+2023-06-14 03:13:50,900 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000057.jpg) successfully finished
+2023-06-14 03:15:18,240 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000058.jpg) successfully finished
+2023-06-14 03:16:46,175 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000059.jpg) successfully finished
+2023-06-14 03:17:43,765 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000060.jpg) successfully finished
+2023-06-14 03:18:39,545 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000061.jpg) successfully finished
+2023-06-14 03:19:35,797 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000062.jpg) successfully finished
+2023-06-14 03:20:15,181 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000063.jpg) successfully finished
+2023-06-14 03:20:52,933 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000064.jpg) successfully finished
+2023-06-14 03:21:31,331 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000065.jpg) successfully finished
+2023-06-14 03:22:09,043 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000066.jpg) successfully finished
+2023-06-14 03:22:47,572 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000067.jpg) successfully finished
+2023-06-14 03:23:25,225 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000068.jpg) successfully finished
+2023-06-14 03:24:02,223 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000069.jpg) successfully finished
+2023-06-14 03:24:40,343 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000070.jpg) successfully finished
+2023-06-14 03:25:17,871 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000071.jpg) successfully finished
+2023-06-14 03:25:56,211 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000072.jpg) successfully finished
+2023-06-14 03:26:34,009 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000073.jpg) successfully finished
+2023-06-14 03:27:13,370 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000074.jpg) successfully finished
+2023-06-14 03:27:52,372 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000075.jpg) successfully finished
+2023-06-14 03:28:33,483 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000076.jpg) successfully finished
+2023-06-14 03:29:13,125 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000077.jpg) successfully finished
+2023-06-14 03:29:53,555 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000078.jpg) successfully finished
+2023-06-14 03:30:33,927 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000079.jpg) successfully finished
+2023-06-14 03:31:13,397 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000080.jpg) successfully finished
+2023-06-14 03:31:52,854 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000081.jpg) successfully finished
+2023-06-14 03:32:39,010 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000082.jpg) successfully finished
+2023-06-14 03:33:22,995 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000083.jpg) successfully finished
+2023-06-14 03:34:04,557 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000084.jpg) successfully finished
+2023-06-14 03:34:46,262 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000085.jpg) successfully finished
+2023-06-14 03:35:20,558 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000086.jpg) successfully finished
+2023-06-14 03:35:55,473 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000087.jpg) successfully finished
+2023-06-14 03:36:30,622 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000088.jpg) successfully finished
+2023-06-14 03:37:03,552 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000089.jpg) successfully finished
+2023-06-14 03:37:36,365 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000090.jpg) successfully finished
+2023-06-14 03:38:10,457 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000091.jpg) successfully finished
+2023-06-14 03:39:01,130 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000092.jpg) successfully finished
+2023-06-14 03:39:54,677 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000093.jpg) successfully finished
+2023-06-14 03:40:53,727 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000094.jpg) successfully finished
+2023-06-14 03:41:29,445 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000095.jpg) successfully finished
+2023-06-14 03:42:02,914 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000096.jpg) successfully finished
+2023-06-14 03:42:34,549 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000097.jpg) successfully finished
+2023-06-14 03:43:07,434 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000098.jpg) successfully finished
+2023-06-14 03:43:40,773 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000099.jpg) successfully finished
+2023-06-14 03:44:13,051 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000100.jpg) successfully finished
+2023-06-14 03:44:45,616 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000101.jpg) successfully finished
+2023-06-14 03:45:18,705 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000102.jpg) successfully finished
+2023-06-14 03:45:53,820 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000103.jpg) successfully finished
+2023-06-14 03:46:28,979 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000104.jpg) successfully finished
+2023-06-14 03:47:04,958 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000105.jpg) successfully finished
+2023-06-14 03:47:41,791 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000106.jpg) successfully finished
+2023-06-14 03:48:19,161 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000107.jpg) successfully finished
+2023-06-14 03:48:54,600 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000108.jpg) successfully finished
+2023-06-14 03:49:29,284 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000109.jpg) successfully finished
+2023-06-14 03:50:03,519 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000110.jpg) successfully finished
+2023-06-14 03:50:37,841 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000111.jpg) successfully finished
+2023-06-14 03:51:12,723 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000112.jpg) successfully finished
+2023-06-14 03:51:47,291 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000113.jpg) successfully finished
+2023-06-14 03:52:21,776 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000114.jpg) successfully finished
+2023-06-14 03:52:55,761 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000115.jpg) successfully finished
+2023-06-14 03:53:31,506 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000116.jpg) successfully finished
+2023-06-14 03:54:05,689 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000117.jpg) successfully finished
+2023-06-14 03:54:40,490 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000118.jpg) successfully finished
+2023-06-14 03:55:14,867 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000119.jpg) successfully finished
+2023-06-14 03:55:49,329 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000120.jpg) successfully finished
+2023-06-14 03:56:23,584 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000121.jpg) successfully finished
+2023-06-14 03:56:59,515 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000122.jpg) successfully finished
+2023-06-14 03:57:36,922 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000123.jpg) successfully finished
+2023-06-14 03:58:15,594 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000124.jpg) successfully finished
+2023-06-14 03:58:53,651 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000125.jpg) successfully finished
+2023-06-14 03:59:29,870 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000126.jpg) successfully finished
+2023-06-14 04:00:06,805 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000127.jpg) successfully finished
+2023-06-14 04:00:47,264 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000128.jpg) successfully finished
+2023-06-14 04:01:26,034 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000129.jpg) successfully finished
+2023-06-14 04:02:06,941 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000130.jpg) successfully finished
+2023-06-14 04:02:46,428 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000131.jpg) successfully finished
+2023-06-14 04:02:56,383 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 10.0.0.5
+2023-06-14 04:03:22,457 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000132.jpg) successfully finished
+2023-06-14 04:03:57,971 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000133.jpg) successfully finished
+2023-06-14 04:04:37,739 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000134.jpg) successfully finished
+2023-06-14 04:05:17,666 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000135.jpg) successfully finished
+2023-06-14 04:06:02,518 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000136.jpg) successfully finished
+2023-06-14 04:06:27,922 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000137.jpg) successfully finished
+2023-06-14 04:06:51,782 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000138.jpg) successfully finished
+2023-06-14 04:07:15,874 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000139.jpg) successfully finished
+2023-06-14 04:07:39,409 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000140.jpg) successfully finished
+2023-06-14 04:08:02,659 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000141.jpg) successfully finished
+2023-06-14 04:08:25,965 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000142.jpg) successfully finished
+2023-06-14 04:08:48,289 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000143.jpg) successfully finished
+2023-06-14 04:09:10,750 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000144.jpg) successfully finished
+2023-06-14 04:09:32,646 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000145.jpg) successfully finished
+2023-06-14 04:09:55,138 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000146.jpg) successfully finished
+2023-06-14 04:10:16,746 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000147.jpg) successfully finished
+2023-06-14 04:10:40,024 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000148.jpg) successfully finished
+2023-06-14 04:11:03,054 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000149.jpg) successfully finished
+2023-06-14 04:11:27,223 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000150.jpg) successfully finished
+2023-06-14 04:11:46,929 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000151.jpg) successfully finished
+2023-06-14 04:12:07,356 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000152.jpg) successfully finished
+2023-06-14 04:12:27,526 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000153.jpg) successfully finished
+2023-06-14 04:12:47,616 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000154.jpg) successfully finished
+2023-06-14 04:13:08,914 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000155.jpg) successfully finished
+2023-06-14 04:13:33,426 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000156.jpg) successfully finished
+2023-06-14 04:13:58,149 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000157.jpg) successfully finished
+2023-06-14 04:14:23,769 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000158.jpg) successfully finished
+2023-06-14 04:14:26,609 [shell_command.py:_check_proc_success()] - Command (wget http://localhost/webcam/?action=snapshot -O /tmp/timelapse/frame000159.jpg) successfully finished
+2023-06-14 04:14:34,341 [timelapse.py:render()] - start FFMPEG: /usr/bin/ffmpeg -r 30 -i '/tmp/timelapse/frame%6d.jpg' -threads 2 -g 5 -crf 23 -vcodec libx264 -pix_fmt yuv420p -an  '/tmp/timelapse/timelapse_Kenny 2 Mod_ Stock SB_ Main Body.gcode_20230614_0414.mp4' -y
+2023-06-14 04:14:44,271 [timelapse.py:render()] - Rendering Video successful: timelapse_Kenny 2 Mod_ Stock SB_ Main Body.gcode_20230614_0414.mp4
+2023-06-14 04:19:30,111 [websockets.py:on_close()] - Websocket Closed: ID: 3909895288 Close Code: None, Close Reason: None, Pong Time Elapsed: 9.98
+2023-06-14 04:19:30,112 [websockets.py:on_close()] - Websocket Closed: ID: 3909897064 Close Code: None, Close Reason: None, Pong Time Elapsed: 9.91
+2023-06-14 04:19:30,113 [websockets.py:on_close()] - Websocket Closed: ID: 3880598760 Close Code: None, Close Reason: None, Pong Time Elapsed: 2.17
+2023-06-14 04:19:31,053 [server.py:_handle_term_signal()] - Exiting with signal SIGTERM
+2023-06-14 04:19:31,168 [websockets.py:on_close()] - Websocket Closed: ID: 3911227832 Close Code: 1000, Close Reason: None, Pong Time Elapsed: 9.18
+2023-06-14 04:19:31,178 [websockets.py:on_close()] - Websocket Closed: ID: 3911111680 Close Code: 1001, Close Reason: Server Shutdown, Pong Time Elapsed: 2.37
+2023-06-14 04:19:31,180 [klippy_connection.py:_on_connection_closed()] - Klippy Connection Removed
+2023-06-14 04:19:31,189 [database.py:close()] - Database statistics:
+
+announcements:
+psize: 4096
+depth: 0
+branch_pages: 0
+leaf_pages: 0
+overflow_pages: 0
+entries: 0
+authorized_users:
+psize: 4096
+depth: 1
+branch_pages: 0
+leaf_pages: 1
+overflow_pages: 0
+entries: 1
+fluidd:
+psize: 4096
+depth: 1
+branch_pages: 0
+leaf_pages: 1
+overflow_pages: 3
+entries: 6
+gcode_metadata:
+psize: 4096
+depth: 3
+branch_pages: 3
+leaf_pages: 87
+overflow_pages: 0
+entries: 221
+history:
+psize: 4096
+depth: 2
+branch_pages: 1
+leaf_pages: 185
+overflow_pages: 0
+entries: 388
+mainsail:
+psize: 4096
+depth: 2
+branch_pages: 1
+leaf_pages: 2
+overflow_pages: 2
+entries: 14
+mobileraker:
+psize: 4096
+depth: 1
+branch_pages: 0
+leaf_pages: 1
+overflow_pages: 3
+entries: 4
+moonraker:
+psize: 4096
+depth: 1
+branch_pages: 0
+leaf_pages: 1
+overflow_pages: 0
+entries: 7
+octoeverywhere:
+psize: 4096
+depth: 1
+branch_pages: 0
+leaf_pages: 1
+overflow_pages: 0
+entries: 1
+timelapse:
+psize: 4096
+depth: 1
+branch_pages: 0
+leaf_pages: 1
+overflow_pages: 0
+entries: 1
+update_manager:
+psize: 4096
+depth: 2
+branch_pages: 1
+leaf_pages: 6
+overflow_pages: 0
+entries: 14
+webcams:
+psize: 4096
+depth: 1
+branch_pages: 0
+leaf_pages: 1
+overflow_pages: 0
+entries: 1
+2023-06-14 04:19:31,194 [server.py:main()] - Server Shutdown
+-------------------- Log Start | Wed Jun 14 08:19:51 2023 --------------------
+data_path: /home/pi/printer_data
+is_default_data_path: False
+config_file: /home/pi/printer_data/config/moonraker.conf
+startup_warnings: []
+verbose: False
+debug: False
+asyncio_debug: False
+is_backup_config: False
+is_python_package: False
+software_version: v0.8.0-48-gaa0f89c
+git_branch: master
+git_remote: origin
+git_repo_url: https://github.com/Arksine/moonraker.git
+modified_files: []
+unofficial_components: []
+log_file: /home/pi/printer_data/logs/moonraker.log
+python_version: 3.9.2 (default, Mar 12 2021, 04:06:34)  [GCC 10.2.1 20210110]
+2023-06-14 04:19:51,941 [confighelper.py:read_file()] - Configuration File '/home/pi/printer_data/config/moonraker.conf' parsed, total size: 3610 B
+2023-06-14 04:19:51,942 [server.py:add_log_rollover_item()] - 
+#################### Moonraker Configuration ####################
+
+[server]
+host = 0.0.0.0
+port = 7125
+max_upload_size = 1024
+klippy_uds_address = ~/printer_data/comms/klippy.sock
+
+[file_manager]
+enable_object_processing = True
+
+[authorization]
+cors_domains = 
+	https://my.mainsail.xyz
+	http://my.mainsail.xyz
+	http://*.local
+	http://*.lan
+trusted_clients = 
+	10.0.0.0/8
+	127.0.0.0/8
+	169.254.0.0/16
+	172.16.0.0/12
+	192.168.0.0/16
+	FE80::/10
+	::1/128
+
+[octoprint_compat]
+
+[history]
+
+[announcements]
+subscriptions = 
+	octoeverywhere
+
+[update_manager]
+refresh_interval = 168
+enable_auto_refresh = True
+
+[update_manager led_effect]
+type = git_repo
+path = ~/klipper-led_effect
+origin = https://github.com/julianschill/klipper-led_effect.git
+is_system_service = False
+
+[update_manager mainsail]
+type = web
+channel = stable
+repo = mainsail-crew/mainsail
+path = ~/mainsail
+
+[update_manager mainsail-config]
+type = git_repo
+primary_branch = master
+path = ~/mainsail-config
+origin = https://github.com/mainsail-crew/mainsail-config.git
+managed_services = klipper
+
+[update_manager timelapse]
+type = git_repo
+primary_branch = main
+path = ~/moonraker-timelapse
+origin = https://github.com/mainsail-crew/moonraker-timelapse.git
+managed_services = klipper moonraker
+
+[timelapse]
+output_path = ~/timelapse/
+ffmpeg_binary_path = /usr/bin/ffmpeg
+
+[update_manager sonar]
+type = git_repo
+path = ~/sonar
+origin = https://github.com/mainsail-crew/sonar.git
+primary_branch = main
+managed_services = sonar
+install_script = tools/install.sh
+
+[update_manager crowsnest]
+type = git_repo
+path = ~/crowsnest
+origin = https://github.com/mainsail-crew/crowsnest.git
+install_script = tools/install.sh
+
+[update_manager octoeverywhere]
+type = git_repo
+channel = beta
+path = /home/pi/octoeverywhere
+origin = https://github.com/QuinnDamerell/OctoPrint-OctoEverywhere.git
+env = /home/pi/octoeverywhere-env/bin/python
+requirements = requirements.txt
+install_script = install.sh
+managed_services = 
+	octoeverywhere
+
+[update_manager mobileraker]
+type = git_repo
+path = ~/mobileraker_companion
+origin = https://github.com/Clon1998/mobileraker_companion.git
+primary_branch = main
+managed_services = mobileraker
+env = ~/mobileraker-env/bin/python
+requirements = scripts/mobileraker-requirements.txt
+install_script = scripts/install-mobileraker-companion.sh
+
+[update_manager CanBoot]
+type = git_repo
+path = ~/CanBoot
+origin = https://github.com/Arksine/CanBoot.git
+is_system_service = False
+
+[update_manager fluidd-config]
+type = git_repo
+primary_branch = master
+path = ~/fluidd-config
+origin = https://github.com/fluidd-core/fluidd-config.git
+managed_services = klipper
+
+[update_manager fluidd]
+type = web
+channel = stable
+repo = fluidd-core/fluidd
+path = ~/fluidd
+
+#################################################################
+All Configuration Files:
+/home/pi/printer_data/config/moonraker.conf
+/home/pi/printer_data/config/octoeverywhere-system.cfg
+#################################################################
+2023-06-14 04:19:51,985 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /server/logs/rollover
+2023-06-14 04:19:51,986 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: server.logs.rollover
+2023-06-14 04:19:51,986 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET) /server/info
+2023-06-14 04:19:51,987 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: server.info
+2023-06-14 04:19:51,987 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET) /server/config
+2023-06-14 04:19:51,987 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: server.config
+2023-06-14 04:19:51,987 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /server/restart
+2023-06-14 04:19:51,988 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: server.restart
+2023-06-14 04:19:52,276 [server.py:load_component()] - Component (dbus_manager) loaded
+2023-06-14 04:19:52,457 [server.py:add_log_rollover_item()] - Unsafe Shutdown Count: 38
+2023-06-14 04:19:52,515 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET) /server/database/list
+2023-06-14 04:19:52,515 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: server.database.list
+2023-06-14 04:19:52,515 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET POST DELETE) /server/database/item
+2023-06-14 04:19:52,516 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: server.database.get_item, server.database.post_item, server.database.delete_item
+2023-06-14 04:19:52,516 [server.py:load_component()] - Component (database) loaded
+2023-06-14 04:19:52,567 [file_manager.py:__init__()] - Using File System Observer: inotify
+2023-06-14 04:19:52,622 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET) /server/files/list
+2023-06-14 04:19:52,623 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: server.files.list
+2023-06-14 04:19:52,623 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET) /server/files/metadata
+2023-06-14 04:19:52,623 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: server.files.metadata
+2023-06-14 04:19:52,624 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /server/files/metascan
+2023-06-14 04:19:52,624 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: server.files.metascan
+2023-06-14 04:19:52,624 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET) /server/files/thumbnails
+2023-06-14 04:19:52,624 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: server.files.thumbnails
+2023-06-14 04:19:52,625 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET) /server/files/roots
+2023-06-14 04:19:52,625 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: server.files.roots
+2023-06-14 04:19:52,625 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET POST DELETE) /server/files/directory
+2023-06-14 04:19:52,625 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: server.files.get_directory, server.files.post_directory, server.files.delete_directory
+2023-06-14 04:19:52,625 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /server/files/move
+2023-06-14 04:19:52,626 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: server.files.move
+2023-06-14 04:19:52,626 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /server/files/copy
+2023-06-14 04:19:52,626 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: server.files.copy
+2023-06-14 04:19:52,627 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /server/files/zip
+2023-06-14 04:19:52,627 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: server.files.zip
+2023-06-14 04:19:52,627 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: server.files.delete_file
+2023-06-14 04:19:52,728 [server.py:load_component()] - Component (file_manager) loaded
+2023-06-14 04:19:52,740 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /printer/print/pause
+2023-06-14 04:19:52,741 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: printer.print.pause
+2023-06-14 04:19:52,741 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /printer/print/resume
+2023-06-14 04:19:52,741 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: printer.print.resume
+2023-06-14 04:19:52,741 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /printer/print/cancel
+2023-06-14 04:19:52,742 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: printer.print.cancel
+2023-06-14 04:19:52,742 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /printer/print/start
+2023-06-14 04:19:52,742 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: printer.print.start
+2023-06-14 04:19:52,742 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /printer/restart
+2023-06-14 04:19:52,742 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: printer.restart
+2023-06-14 04:19:52,743 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /printer/firmware_restart
+2023-06-14 04:19:52,743 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: printer.firmware_restart
+2023-06-14 04:19:52,743 [server.py:load_component()] - Component (klippy_apis) loaded
+2023-06-14 04:19:53,025 [server.py:load_component()] - Component (secrets) loaded
+2023-06-14 04:19:53,044 [server.py:load_component()] - Component (template) loaded
+2023-06-14 04:19:53,124 [server.py:add_log_rollover_item()] - 
+System Info:
+
+***python***
+  version: sys.version_info(major=3, minor=9, micro=2, releaselevel='final', serial=0)
+  version_string: 3.9.2 (default, Mar 12 2021, 04:06:34)  [GCC 10.2.1 20210110]
+
+***cpu_info***
+  cpu_count: 4
+  bits: 32bit
+  processor: aarch64
+  cpu_desc: 
+  serial_number: 100000002b686c93
+  hardware_desc: BCM2835
+  model: Raspberry Pi 4 Model B Rev 1.4
+  total_memory: 3705532
+  memory_units: kB
+
+***sd_info***
+  manufacturer_id: 03
+  manufacturer: Sandisk
+  oem_id: 5344
+  product_name: SD32G
+  product_revision: 8.5
+  serial_number: fcf67def
+  manufacturer_date: 3/2022
+  capacity: 29.7 GiB
+  total_bytes: 31927042048
+
+***distribution***
+  name: Raspbian GNU/Linux 11 (bullseye)
+  id: raspbian
+  version: 11
+  version_parts: {'major': '11', 'minor': '', 'build_number': ''}
+  like: debian
+  codename: bullseye
+  release_info: {'name': 'MainsailOS', 'version_id': '1.0.1', 'codename': 'bullseye', 'id': 'mainsailos'}
+
+***virtualization***
+  virt_type: none
+  virt_identifier: none
+
+***network***
+
+***canbus***
+
+***Allowed Services***
+  klipper_mcu
+  webcamd
+  MoonCord
+  KlipperScreen
+  moonraker-telegram-bot
+  moonraker-obico
+  sonar
+  crowsnest
+  octoeverywhere
+  mobileraker
+2023-06-14 04:19:53,131 [server.py:load_component()] - Component (shell_command) loaded
+2023-06-14 04:19:53,131 [machine.py:__init__()] - Using System Provider: systemd_dbus
+2023-06-14 04:19:53,133 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /machine/reboot
+2023-06-14 04:19:53,134 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: machine.reboot
+2023-06-14 04:19:53,134 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /machine/shutdown
+2023-06-14 04:19:53,134 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: machine.shutdown
+2023-06-14 04:19:53,134 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /machine/services/restart
+2023-06-14 04:19:53,135 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: machine.services.restart
+2023-06-14 04:19:53,135 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /machine/services/stop
+2023-06-14 04:19:53,136 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: machine.services.stop
+2023-06-14 04:19:53,136 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /machine/services/start
+2023-06-14 04:19:53,136 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: machine.services.start
+2023-06-14 04:19:53,137 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET) /machine/system_info
+2023-06-14 04:19:53,137 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: machine.system_info
+2023-06-14 04:19:53,137 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET) /machine/sudo/info
+2023-06-14 04:19:53,137 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: machine.sudo.info
+2023-06-14 04:19:53,137 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /machine/sudo/password
+2023-06-14 04:19:53,140 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: machine.sudo.password
+2023-06-14 04:19:53,141 [server.py:load_component()] - Component (machine) loaded
+2023-06-14 04:19:53,150 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET) /server/temperature_store
+2023-06-14 04:19:53,151 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: server.temperature_store
+2023-06-14 04:19:53,151 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET) /server/gcode_store
+2023-06-14 04:19:53,152 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: server.gcode_store
+2023-06-14 04:19:53,152 [server.py:load_component()] - Component (data_store) loaded
+2023-06-14 04:19:53,166 [proc_stats.py:__init__()] - Detected 'vcgencmd', throttle checking enabled
+2023-06-14 04:19:53,166 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET) /machine/proc_stats
+2023-06-14 04:19:53,167 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: machine.proc_stats
+2023-06-14 04:19:53,167 [server.py:load_component()] - Component (proc_stats) loaded
+2023-06-14 04:19:53,193 [server.py:load_component()] - Component (job_state) loaded
+2023-06-14 04:19:53,203 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST DELETE) /server/job_queue/job
+2023-06-14 04:19:53,203 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: server.job_queue.post_job, server.job_queue.delete_job
+2023-06-14 04:19:53,203 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /server/job_queue/pause
+2023-06-14 04:19:53,204 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: server.job_queue.pause
+2023-06-14 04:19:53,204 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /server/job_queue/start
+2023-06-14 04:19:53,204 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: server.job_queue.start
+2023-06-14 04:19:53,204 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET) /server/job_queue/status
+2023-06-14 04:19:53,205 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: server.job_queue.status
+2023-06-14 04:19:53,205 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /server/job_queue/jump
+2023-06-14 04:19:53,206 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: server.job_queue.jump
+2023-06-14 04:19:53,206 [server.py:load_component()] - Component (job_queue) loaded
+2023-06-14 04:19:53,224 [server.py:load_component()] - Component (http_client) loaded
+2023-06-14 04:19:53,229 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET) /server/announcements/list
+2023-06-14 04:19:53,230 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: server.announcements.list
+2023-06-14 04:19:53,230 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /server/announcements/dismiss
+2023-06-14 04:19:53,230 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: server.announcements.dismiss
+2023-06-14 04:19:53,230 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /server/announcements/update
+2023-06-14 04:19:53,231 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: server.announcements.update
+2023-06-14 04:19:53,231 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST DELETE) /server/announcements/feed
+2023-06-14 04:19:53,232 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: server.announcements.post_feed, server.announcements.delete_feed
+2023-06-14 04:19:53,232 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET) /server/announcements/feeds
+2023-06-14 04:19:53,232 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: server.announcements.feeds
+2023-06-14 04:19:53,232 [server.py:load_component()] - Component (announcements) loaded
+2023-06-14 04:19:53,244 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET) /server/webcams/list
+2023-06-14 04:19:53,245 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: server.webcams.list
+2023-06-14 04:19:53,245 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET POST DELETE) /server/webcams/item
+2023-06-14 04:19:53,245 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: server.webcams.get_item, server.webcams.post_item, server.webcams.delete_item
+2023-06-14 04:19:53,246 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /server/webcams/test
+2023-06-14 04:19:53,246 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: server.webcams.test
+2023-06-14 04:19:53,246 [server.py:load_component()] - Component (webcam) loaded
+2023-06-14 04:19:53,252 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: connection.send_event
+2023-06-14 04:19:53,253 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET) /server/extensions/list
+2023-06-14 04:19:53,253 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: server.extensions.list
+2023-06-14 04:19:53,253 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /server/extensions/request
+2023-06-14 04:19:53,254 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: server.extensions.request
+2023-06-14 04:19:53,254 [server.py:load_component()] - Component (extensions) loaded
+2023-06-14 04:19:53,263 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET DELETE) /server/history/job
+2023-06-14 04:19:53,267 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: server.history.get_job, server.history.delete_job
+2023-06-14 04:19:53,267 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET) /server/history/list
+2023-06-14 04:19:53,267 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: server.history.list
+2023-06-14 04:19:53,267 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET) /server/history/totals
+2023-06-14 04:19:53,268 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: server.history.totals
+2023-06-14 04:19:53,270 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /server/history/reset_totals
+2023-06-14 04:19:53,271 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: server.history.reset_totals
+2023-06-14 04:19:53,273 [server.py:load_component()] - Component (history) loaded
+2023-06-14 04:19:53,312 [authorization.py:__init__()] - Authorization Configuration Loaded
+Trusted Clients:
+10.0.0.0/8
+127.0.0.0/8
+169.254.0.0/16
+172.16.0.0/12
+192.168.0.0/16
+fe80::/10
+::1/128
+CORS Domains:
+https://my\.mainsail\.xyz
+http://my\.mainsail\.xyz
+http://.*\.local
+http://.*\.lan
+2023-06-14 04:19:53,312 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /access/login
+2023-06-14 04:19:53,312 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: access.login
+2023-06-14 04:19:53,313 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /access/logout
+2023-06-14 04:19:53,313 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: access.logout
+2023-06-14 04:19:53,313 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /access/refresh_jwt
+2023-06-14 04:19:53,314 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: access.refresh_jwt
+2023-06-14 04:19:53,314 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET POST DELETE) /access/user
+2023-06-14 04:19:53,314 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: access.get_user, access.post_user, access.delete_user
+2023-06-14 04:19:53,314 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET) /access/users/list
+2023-06-14 04:19:53,315 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: access.users.list
+2023-06-14 04:19:53,315 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /access/user/password
+2023-06-14 04:19:53,315 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: access.user.password
+2023-06-14 04:19:53,316 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET POST) /access/api_key
+2023-06-14 04:19:53,316 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: access.get_api_key, access.post_api_key
+2023-06-14 04:19:53,316 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET) /access/oneshot_token
+2023-06-14 04:19:53,317 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: access.oneshot_token
+2023-06-14 04:19:53,321 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET) /access/info
+2023-06-14 04:19:53,322 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: access.info
+2023-06-14 04:19:53,322 [server.py:load_component()] - Component (authorization) loaded
+2023-06-14 04:19:53,340 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /machine/timelapse/render
+2023-06-14 04:19:53,341 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: machine.timelapse.render
+2023-06-14 04:19:53,341 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /machine/timelapse/saveframes
+2023-06-14 04:19:53,342 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: machine.timelapse.saveframes
+2023-06-14 04:19:53,342 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET POST) /machine/timelapse/settings
+2023-06-14 04:19:53,342 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: machine.timelapse.get_settings, machine.timelapse.post_settings
+2023-06-14 04:19:53,342 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET) /machine/timelapse/lastframeinfo
+2023-06-14 04:19:53,343 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: machine.timelapse.lastframeinfo
+2023-06-14 04:19:53,343 [server.py:load_component()] - Component (timelapse) loaded
+2023-06-14 04:19:53,402 [base_deploy.py:log_info()] - Application moonraker: Detected virtualenv: /home/pi/moonraker-env
+2023-06-14 04:19:53,407 [base_deploy.py:log_info()] - Application klipper: Detected virtualenv: /home/pi/klippy-env
+2023-06-14 04:19:53,428 [base_deploy.py:log_info()] - Application octoeverywhere: Detected virtualenv: /home/pi/octoeverywhere-env
+2023-06-14 04:19:53,431 [base_deploy.py:log_info()] - Application mobileraker: Detected virtualenv: /home/pi/mobileraker-env
+2023-06-14 04:19:53,439 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /machine/update/moonraker
+2023-06-14 04:19:53,440 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: machine.update.moonraker
+2023-06-14 04:19:53,440 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /machine/update/klipper
+2023-06-14 04:19:53,441 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: machine.update.klipper
+2023-06-14 04:19:53,441 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /machine/update/system
+2023-06-14 04:19:53,441 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: machine.update.system
+2023-06-14 04:19:53,441 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /machine/update/client
+2023-06-14 04:19:53,442 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: machine.update.client
+2023-06-14 04:19:53,442 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /machine/update/full
+2023-06-14 04:19:53,442 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: machine.update.full
+2023-06-14 04:19:53,442 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET) /machine/update/status
+2023-06-14 04:19:53,443 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: machine.update.status
+2023-06-14 04:19:53,443 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /machine/update/refresh
+2023-06-14 04:19:53,443 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: machine.update.refresh
+2023-06-14 04:19:53,443 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /machine/update/recover
+2023-06-14 04:19:53,443 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: machine.update.recover
+2023-06-14 04:19:53,444 [server.py:load_component()] - Component (update_manager) loaded
+2023-06-14 04:19:53,455 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET) /api/version
+2023-06-14 04:19:53,456 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET) /api/server
+2023-06-14 04:19:53,457 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /api/login
+2023-06-14 04:19:53,457 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET) /api/currentuser
+2023-06-14 04:19:53,458 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET) /api/settings
+2023-06-14 04:19:53,458 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET) /api/job
+2023-06-14 04:19:53,458 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET) /api/printer
+2023-06-14 04:19:53,459 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /api/printer/command
+2023-06-14 04:19:53,459 [app.py:register_local_handler()] - Registering HTTP Endpoint: (GET) /api/printerprofiles
+2023-06-14 04:19:53,460 [app.py:register_local_handler()] - Registering HTTP Endpoint: (POST) /api/files/moonraker/(?P<relative_path>.+)
+2023-06-14 04:19:53,460 [server.py:load_component()] - Component (octoprint_compat) loaded
+2023-06-14 04:19:53,473 [server.py:_initialize_component()] - Performing Component Post Init: [dbus_manager]
+2023-06-14 04:19:53,486 [server.py:_initialize_component()] - Performing Component Post Init: [file_manager]
+2023-06-14 04:19:54,792 [server.py:_initialize_component()] - Performing Component Post Init: [machine]
+2023-06-14 04:19:54,792 [machine.py:validation_init()] - Installation version in database up to date
+2023-06-14 04:19:55,198 [machine.py:check_virt_status()] - No Virtualization Detected
+2023-06-14 04:19:55,222 [machine.py:_find_public_ip()] - Detected Local IP: 10.0.0.99
+2023-06-14 04:19:55,225 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://10.0.0.99
+2023-06-14 04:19:55,292 [server.py:add_log_rollover_item()] - 
+Systemd unit moonraker.service:
+unit_name: moonraker.service
+is_default: True
+manager: systemd
+Properties:
+**Requires=['-.mount', 'sysinit.target', 'network-online.target', 'system.slice']
+**After=['basic.target', '-.mount', 'klipper.service', 'systemd-journald.socket', 'sysinit.target', 'network-online.target', 'system.slice']
+**SupplementaryGroups=['moonraker-admin']
+**EnvironmentFiles=/home/pi/printer_data/systemd/moonraker.env
+**ExecStart=/home/pi/moonraker-env/bin/python $MOONRAKER_ARGS
+**WorkingDirectory=/home/pi/moonraker
+**FragmentPath=/etc/systemd/system/moonraker.service
+**Description=API Server for Klipper SV1
+**User=pi
+2023-06-14 04:19:55,293 [server.py:_initialize_component()] - Performing Component Post Init: [proc_stats]
+2023-06-14 04:19:55,293 [server.py:_initialize_component()] - Performing Component Post Init: [announcements]
+2023-06-14 04:19:55,296 [server.py:_initialize_component()] - Performing Component Post Init: [webcam]
+2023-06-14 04:19:55,296 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://10.0.0.99
+2023-06-14 04:19:55,297 [server.py:_initialize_component()] - Performing Component Post Init: [klippy_connection]
+2023-06-14 04:19:55,298 [server.py:add_log_rollover_item()] - 
+Systemd unit klipper.service:
+unit_name: klipper.service
+is_default: True
+manager: systemd
+Properties:
+**Requires=['sysinit.target', 'system.slice', '-.mount']
+**After=['systemd-journald.socket', 'sysinit.target', 'basic.target', 'network-online.target', 'system.slice', '-.mount']
+**SupplementaryGroups=[]
+**EnvironmentFiles=/home/pi/printer_data/systemd/klipper.env
+**ExecStart=/home/pi/klippy-env/bin/python $KLIPPER_ARGS
+**WorkingDirectory=/home/pi/klipper
+**FragmentPath=/etc/systemd/system/klipper.service
+**Description=Klipper 3D Printer Firmware SV1
+**User=pi
+2023-06-14 04:19:55,299 [server.py:_initialize_component()] - Performing Component Post Init: [authorization]
+2023-06-14 04:19:55,299 [server.py:_initialize_component()] - Performing Component Post Init: [update_manager]
+2023-06-14 04:19:55,653 [update_manager.py:initialize()] - PackageDeploy: Using PackageKit Provider
+2023-06-14 04:19:55,654 [base_deploy.py:log_info()] - Application moonraker: Stored pip version: 23.0
+2023-06-14 04:19:55,655 [base_deploy.py:log_info()] - Application klipper: Stored pip version: 20.3.4
+2023-06-14 04:19:55,658 [update_manager.py:initialize()] - 
+Initializing Client Updater: 'mainsail',
+Channel: stable
+path: /home/pi/mainsail
+2023-06-14 04:19:55,658 [base_deploy.py:log_info()] - Application octoeverywhere: Stored pip version: 20.3.4
+2023-06-14 04:19:55,660 [base_deploy.py:log_info()] - Application mobileraker: Stored pip version: 20.3.4
+2023-06-14 04:19:55,660 [update_manager.py:initialize()] - 
+Initializing Client Updater: 'fluidd',
+Channel: stable
+path: /home/pi/fluidd
+2023-06-14 04:19:55,671 [confighelper.py:create_backup()] - Backing up last working configuration to '/home/pi/printer_data/config/.moonraker.conf.bkp'
+2023-06-14 04:19:55,675 [extensions.py:start_unix_server()] - Creating Unix Domain Socket at '/home/pi/printer_data/comms/moonraker.sock'
+2023-06-14 04:19:55,676 [server.py:start_server()] - Starting Moonraker on (0.0.0.0, 7125), Hostname: mainsailos
+2023-06-14 04:19:55,677 [app.py:listen()] - SSL Certificate/Key not configured, aborting HTTPS Server startup
+2023-06-14 04:19:55,713 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 127.0.0.1
+2023-06-14 04:19:55,719 [app.py:log_request()] - 101 GET /websocket (127.0.0.1) [_TRUSTED_USER_] 9.18ms
+2023-06-14 04:19:55,720 [websockets.py:open()] - Websocket Opened: ID: 3910896296, Proxied: False, User Agent: Python/3.9 websockets/10.1, Host Name: 127.0.0.1
+2023-06-14 04:19:55,773 [app.py:log_request()] - 101 GET /websocket (127.0.0.1) [_TRUSTED_USER_] 2.52ms
+2023-06-14 04:19:55,774 [websockets.py:open()] - Websocket Opened: ID: 3911907264, Proxied: False, User Agent: , Host Name: 0.0.0.0
+2023-06-14 04:19:55,783 [websockets.py:_handle_identify()] - Websocket 3911907264 Client Identified - Name: OctoEverywhere, Version: 2.5.11, Type: other
+2023-06-14 04:19:55,799 [websockets.py:on_close()] - Websocket Closed: ID: 3911907264 Close Code: 1000, Close Reason: None, Pong Time Elapsed: 0.03
+2023-06-14 04:19:55,929 [klippy_connection.py:_do_connect()] - Klippy Connection Established
+2023-06-14 04:19:55,999 [server.py:add_log_rollover_item()] - 
+Systemd unit klipper.service:
+unit_name: klipper.service
+is_default: True
+manager: systemd
+Properties:
+**Requires=['sysinit.target', 'system.slice', '-.mount']
+**After=['network-online.target', 'sysinit.target', 'basic.target', 'systemd-journald.socket', 'system.slice', '-.mount']
+**SupplementaryGroups=[]
+**EnvironmentFiles=/home/pi/printer_data/systemd/klipper.env
+**ExecStart=/home/pi/klippy-env/bin/python $KLIPPER_ARGS
+**WorkingDirectory=/home/pi/klipper
+**FragmentPath=/etc/systemd/system/klipper.service
+**Description=Klipper 3D Printer Firmware SV1
+**User=pi
+2023-06-14 04:19:56,255 [server.py:add_log_rollover_item()] - Klipper Version: v0.11.0-221-g6ce2bd61-dirty
+2023-06-14 04:19:56,268 [app.py:register_remote_handler()] - Registering HTTP endpoint: (GET POST) /printer/info
+2023-06-14 04:19:56,268 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: printer.info
+2023-06-14 04:19:56,268 [app.py:register_remote_handler()] - Registering HTTP endpoint: (GET POST) /printer/emergency_stop
+2023-06-14 04:19:56,269 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: printer.emergency_stop
+2023-06-14 04:19:56,269 [app.py:register_remote_handler()] - Registering HTTP endpoint: (GET POST) /printer/gcode/help
+2023-06-14 04:19:56,269 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: printer.gcode.help
+2023-06-14 04:19:56,269 [app.py:register_remote_handler()] - Registering HTTP endpoint: (GET POST) /printer/gcode/script
+2023-06-14 04:19:56,270 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: printer.gcode.script
+2023-06-14 04:19:56,270 [app.py:register_remote_handler()] - Registering HTTP endpoint: (GET POST) /printer/gcode/restart
+2023-06-14 04:19:56,270 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: printer.gcode.restart
+2023-06-14 04:19:56,270 [app.py:register_remote_handler()] - Registering HTTP endpoint: (GET POST) /printer/gcode/firmware_restart
+2023-06-14 04:19:56,270 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: printer.gcode.firmware_restart
+2023-06-14 04:19:56,270 [app.py:register_remote_handler()] - Registering HTTP endpoint: (GET POST) /printer/objects/list
+2023-06-14 04:19:56,271 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: printer.objects.list
+2023-06-14 04:19:56,271 [app.py:register_remote_handler()] - Registering HTTP endpoint: (GET POST) /printer/objects/query
+2023-06-14 04:19:56,272 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: printer.objects.query
+2023-06-14 04:19:56,272 [app.py:register_remote_handler()] - Registering HTTP endpoint: (GET POST) /printer/objects/subscribe
+2023-06-14 04:19:56,272 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: printer.objects.subscribe
+2023-06-14 04:19:56,273 [app.py:register_remote_handler()] - Registering HTTP endpoint: (GET POST) /printer/pause_resume/cancel
+2023-06-14 04:19:56,273 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: printer.pause_resume.cancel
+2023-06-14 04:19:56,273 [app.py:register_remote_handler()] - Registering HTTP endpoint: (GET POST) /printer/pause_resume/pause
+2023-06-14 04:19:56,274 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: printer.pause_resume.pause
+2023-06-14 04:19:56,274 [app.py:register_remote_handler()] - Registering HTTP endpoint: (GET POST) /printer/pause_resume/resume
+2023-06-14 04:19:56,274 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: printer.pause_resume.resume
+2023-06-14 04:19:56,275 [app.py:register_remote_handler()] - Registering HTTP endpoint: (GET POST) /printer/adxl345/dump_adxl345
+2023-06-14 04:19:56,275 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: printer.adxl345.dump_adxl345
+2023-06-14 04:19:56,275 [app.py:register_remote_handler()] - Registering HTTP endpoint: (GET POST) /printer/motion_report/dump_stepper
+2023-06-14 04:19:56,276 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: printer.motion_report.dump_stepper
+2023-06-14 04:19:56,276 [app.py:register_remote_handler()] - Registering HTTP endpoint: (GET POST) /printer/query_endstops/status
+2023-06-14 04:19:56,277 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: printer.query_endstops.status
+2023-06-14 04:19:56,277 [app.py:register_remote_handler()] - Registering HTTP endpoint: (GET POST) /printer/motion_report/dump_trapq
+2023-06-14 04:19:56,277 [websockets.py:register_api_handler()] - Registering Websocket JSON-RPC methods: printer.motion_report.dump_trapq
+2023-06-14 04:19:56,532 [klippy_connection.py:_request_initial_subscriptions()] - Webhooks Subscribed
+2023-06-14 04:19:56,534 [klippy_connection.py:_request_initial_subscriptions()] - GCode Output Subscribed
+2023-06-14 04:19:56,784 [job_state.py:_handle_started()] - Job state initialized: standby
+2023-06-14 04:19:57,062 [klippy_connection.py:_check_ready()] - Klippy ready
+2023-06-14 04:19:57,235 [app.py:log_request()] - 101 GET /websocket?token=BGSBXFE7QQYTNDOFGH4JMPVWVU5ZTUEX (127.0.0.1) [_TRUSTED_USER_] 6.58ms
+2023-06-14 04:19:57,236 [websockets.py:open()] - Websocket Opened: ID: 3910539224, Proxied: False, User Agent: , Host Name: 127.0.0.1
+2023-06-14 04:19:57,289 [app.py:log_request()] - 404 GET /machine/device_power/devices (127.0.0.1) [No User] 13.94ms
+2023-06-14 04:19:57,535 [data_store.py:_init_sensors()] - Configuring available sensors: ['heater_bed', 'temperature_sensor Octopus', 'temperature_sensor Raspi', 'temperature_sensor FLY-SB2040', 'temperature_sensor enclosure_temp', 'extruder']
+2023-06-14 04:19:57,821 [app.py:log_request()] - 101 GET /websocket (127.0.0.1) [_TRUSTED_USER_] 4.71ms
+2023-06-14 04:19:57,821 [websockets.py:open()] - Websocket Opened: ID: 3892138168, Proxied: False, User Agent: , Host Name: 0.0.0.0
+2023-06-14 04:19:57,826 [websockets.py:_handle_identify()] - Websocket 3892138168 Client Identified - Name: OctoEverywhere, Version: 2.5.11, Type: other
+2023-06-14 04:19:57,899 [file_manager.py:get_file_list()] - Updating File List <gcodes>...
+2023-06-14 04:19:59,580 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 10.0.0.209
+2023-06-14 04:19:59,582 [app.py:log_request()] - 101 GET /websocket?token= (10.0.0.209) [_TRUSTED_USER_] 3.31ms
+2023-06-14 04:19:59,582 [websockets.py:open()] - Websocket Opened: ID: 3910896416, Proxied: False, User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36 Edg/111.0.1661.44, Host Name: 10.0.0.99
+2023-06-14 04:19:59,626 [websockets.py:_handle_identify()] - Websocket 3910896416 Client Identified - Name: Halo, Version: v0.17-972c0e3, Type: display
